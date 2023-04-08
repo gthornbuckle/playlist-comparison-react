@@ -1,0 +1,18 @@
+.playListArea{
+    width: 43200px;
+    display: flex;
+    flex-direction: row;
+    z-index: 1;
+    position: absolute;
+    pointer-events: none
+}
+
+.playlistBlock{
+    display: flex;
+    flex-direction: row;
+}
+
+.trackBlock{
+    background-color: blue;
+    flex-shrink: 0;
+}

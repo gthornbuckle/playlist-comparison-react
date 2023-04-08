@@ -1,12 +1,13 @@
 import './App.css';
 import PlaylistBlock from './components/PlaylistBlock';
+import './assets/Style.css'
 
 function App() {
   return (
     <div className="App">
-      <h1>Test</h1>
-      <div>
-        <PlaylistBlock/>
+      <div className="playlistArea">
+        <PlaylistBlock
+        id={1}/>
       </div>
     </div>
   );
