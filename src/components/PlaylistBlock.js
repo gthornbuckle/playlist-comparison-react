@@ -28,7 +28,7 @@ const generatePlaylist = arr =>{
         playlistTrackObj["name"] = e.track.name;
         playlistTrackObj["duration"] = e.track.duration_ms;
         playlistTrackObj["artistArr"] = getArtists(e.track.artists);
-        playlistTrackObj["artwork"] = e.track.album.images[0].url;
+        playlistTrackObj["artwork"] = e.track.album.images[1].url;
         playlistTrackObj["url"] = e.track.external_urls.spotify;
 
         tempPlaylist.push(playlistTrackObj);

@@ -27,6 +27,7 @@ body{
 
 .trackBlockContent{
     display:flex;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -42,7 +43,16 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     height: 200px;
-    position: absolute;
-    z-index: 1;
+    width: 200px;
     opacity: 0.1;
+    filter: grayscale();
+}
+
+.artworkOverlay{
+    background-image: linear-gradient(to right,rgba(255,0,0,1), rgba(255,0,0,0));
+    height: 200px;
+    width: 200px;
+    position: relative;
+    z-index: 1;
+    left: 30%;
 }
