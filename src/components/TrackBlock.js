@@ -24,7 +24,10 @@ function TrackBlock(props){
                     <p>{props.artists.join(' & ')}</p>
                     <p>{dayjs(props.duration).format('mm:ss')}</p>
                 </div>
-                <div className="trackBlockImg" style={{backgroundImage: `url(${props.artwork})`}}></div>
+                <div className="trackBlockImg" 
+                    style={{backgroundImage: `url(${props.artwork})`, width: `${Math.floor(props.duration/1000)}px`}}>
+                </div>
+
             </div>
         </div>
     )
