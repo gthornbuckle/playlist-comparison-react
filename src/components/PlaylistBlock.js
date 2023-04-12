@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import TrackBlock from './TrackBlock';
-import v2TestData from '../assets/testdata.json';
+import v2TestData from '../assets/testdata_tracks.json';
 import GetTheme from './GetTheme'
 import '../assets/Style.css'
-
-let playlistResponse = v2TestData.items;
 
 const playlistTheme = GetTheme();
 
@@ -38,11 +36,10 @@ const generatePlaylist = arr =>{
 }
 
 function PlaylistBlock(props){
-    console.log(generatePlaylist(playlistResponse));
 
     return(
     <div className="playlistBlock">
-        {generatePlaylist(playlistResponse).map(track =><TrackBlock 
+        {generatePlaylist(props.trackData).map(track =><TrackBlock 
             key={track.id}
             id={track.id}
             name={track.name}

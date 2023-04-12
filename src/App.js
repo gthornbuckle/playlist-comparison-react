@@ -1,14 +1,18 @@
 import './App.css';
-import PlaylistBlock from './components/PlaylistBlock';
+import React from 'react'
+import SearchInfoWrapper from './components/SearchInfoWrapper';
+import PlaylistWrapper from './components/PlaylistWrapper';
+import v2TestData from './assets/testdata_info.json';
 import './assets/Style.css'
+
+let response = v2TestData;
 
 function App() {
   return (
     <div className="App">
-      <div className="playlistArea">
-        <PlaylistBlock
-        id={1}/>
-      </div>
+      <SearchInfoWrapper/>
+      <PlaylistWrapper
+      playlistData={response}/>
     </div>
   );
 }
