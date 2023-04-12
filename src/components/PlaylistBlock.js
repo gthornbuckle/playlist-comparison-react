@@ -38,7 +38,7 @@ const generatePlaylist = arr =>{
 function PlaylistBlock(props){
 
     return(
-    <div className="playlistBlock">
+    <div className="flex flex-row">
         {generatePlaylist(props.trackData).map(track =><TrackBlock 
             key={track.id}
             id={track.id}

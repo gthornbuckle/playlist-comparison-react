@@ -8,7 +8,8 @@ const generateInfo = arr =>{
     arr.forEach(e =>{
         let infoObj = {};
 
-        infoObj["id"] = e.name;
+        infoObj["id"] = e.id;
+        infoObj["name"] = e.name;
 
         tempInfo.push(infoObj);
     })
@@ -19,9 +20,10 @@ const generateInfo = arr =>{
 function PlaylistInfo(props){
 
     return(
-    <div className="playlistInfo">
-        <h2>Playlist Name</h2>
-        <p>00:00:00</p>
+    <div className="basis-1/6 self-center text-lg font-bold text-white text-left">
+        <p>{props.playlistInfo.name}</p>
+        <p>{props.playlistInfo.tracks.total} tracks</p>
+        <p>Length goes here (hello)</p>
     </div>
     );
 }

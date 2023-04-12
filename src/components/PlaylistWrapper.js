@@ -6,8 +6,9 @@ import '../assets/Style.css'
 function PlaylistWrapper(props){
 
     return(
-    <div className="playlistWrapper">
-        <div className="container mx-auto px-1 overflow-x-scroll">
+    <div className="flex flex-row">
+        <PlaylistInfo playlistInfo={props.playlistData}/>
+        <div className=" basis-5/6 px-1 overflow-x-scroll">
             <PlaylistBlock trackData={props.playlistData.tracks.items}/>
         </div>
     </div>

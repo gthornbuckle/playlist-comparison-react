@@ -4,11 +4,6 @@
     pointer-events: none
 }
 
-.playlistBlock{
-    display: flex;
-    flex-direction: row;
-}
-
 .trackBlock{
     height:200px;
     overflow: hidden;
