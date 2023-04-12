@@ -7,7 +7,7 @@ function PlaylistWrapper(props){
 
     return(
     <div className="playlistWrapper">
-        <div className="playlistArea">
+        <div className="container mx-auto px-1 overflow-x-scroll">
             <PlaylistBlock trackData={props.playlistData.tracks.items}/>
         </div>
     </div>

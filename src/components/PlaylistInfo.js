@@ -2,8 +2,6 @@ import { React, useContext } from "react";
 import v2TestData from '../assets/testdata_info.json';
 import '../assets/Style.css'
 
-let playlistInfo = v2TestData;
-
 const generateInfo = arr =>{
     let tempInfo = [];
 

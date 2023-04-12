@@ -29,13 +29,3 @@
     align-items: flex-start;
     text-align: left;
 }
-
-.trackBlockImg {
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 200px;
-    position: absolute;
-    z-index: 1;
-    opacity: 0.1;
-    filter: grayscale();
-}

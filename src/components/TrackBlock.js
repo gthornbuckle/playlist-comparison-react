@@ -17,17 +17,16 @@ const getStyle = (theme, duration) =>{
 
 function TrackBlock(props){
     return (
-        <div className="trackBlock" style={getStyle(props.playlistTheme, props.duration)}>
-            <div className="trackBlockContent">
-                <div className="trackBlockText">
-                    <p>{props.name}</p>
-                    <p>{props.artists.join(' & ')}</p>
-                    <p>{dayjs(props.duration).format('mm:ss')}</p>
+        <div className="relative">
+            <div className="trackBlock" style={getStyle(props.playlistTheme, props.duration)}>
+                <div className="trackBlockContent">
+                    <div className="trackBlockText">
+                        <p>{props.name}</p>
+                        <p>{props.artists.join(' & ')}</p>
+                        <p>{dayjs(props.duration).format('mm:ss')}</p>
+                    </div>
                 </div>
-                <div className="trackBlockImg bg-center"
-                    style={{backgroundImage: `url(${props.artwork})`, width: `${Math.floor(props.duration/1000)}px`}}>
-                </div>
-
+                <div className="bg-cover bg-center opacity-10 z-10 absolute top-0" style= {{backgroundImage: `url(${props.artwork})`, height: 200, width: `${Math.floor(props.duration/1000)}px`}}></div>
             </div>
         </div>
     )
