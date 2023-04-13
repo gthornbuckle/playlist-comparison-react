@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import '../assets/Style.css'
+import React from "react";
 
 function SearchInfoWrapper(props){
 

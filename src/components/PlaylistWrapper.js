@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import PlaylistInfo from './PlaylistInfo';
 import PlaylistBlock from './PlaylistBlock';
-import '../assets/Style.css'
+import GetTheme from './GetTheme'
+
+const playlistTheme = GetTheme();
 
 function PlaylistWrapper(props){
 
     return(
     <div className="flex flex-row">
-        <PlaylistInfo playlistInfo={props.playlistData}/>
-        <div className=" basis-5/6 px-1 overflow-x-scroll">
-            <PlaylistBlock trackData={props.playlistData.tracks.items}/>
+        <PlaylistInfo playlistInfo={props.playlistData} playlistTheme={playlistTheme}/>
+        <div className=" basis-5/6 overflow-x-scroll">
+            <PlaylistBlock trackData={props.playlistData.tracks.items} playlistTheme={playlistTheme}/>
         </div>
     </div>
     );

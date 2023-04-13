@@ -20,12 +20,10 @@ code {
 ::-webkit-scrollbar {
   height: 12px;
   background: #334155;
-  -webkit-border-radius: 0.375ex;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #14b8a6;
-  -webkit-border-radius: 0.375ex;
 }
 
 ::-webkit-scrollbar-corner {

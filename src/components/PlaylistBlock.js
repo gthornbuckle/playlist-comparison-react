@@ -1,10 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import TrackBlock from './TrackBlock';
-import v2TestData from '../assets/testdata_tracks.json';
-import GetTheme from './GetTheme'
-import '../assets/Style.css'
-
-const playlistTheme = GetTheme();
 
 const generatePlaylist = arr =>{
     let tempPlaylist = [];
@@ -47,7 +42,7 @@ function PlaylistBlock(props){
             artists={track.artistArr}
             artwork={track.artwork}
             url={track.url}
-            playlistTheme={playlistTheme}/>)}
+            playlistTheme={props.playlistTheme}/>)}
     </div>
     );
 }
