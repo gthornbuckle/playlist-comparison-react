@@ -18,7 +18,7 @@ function TrackBlock(props){
     return (
         <div className="relative">
             <div className="trackBlock h-[200px] text-white" style={getStyle(props.playlistTheme, props.duration)}>
-                <div className="pl-5 pt-2 flex flex-col items-start text-left font-sans font-bold z-10 absolute">
+                <div className="pl-5 pt-2 flex flex-col items-start text-left font-sans font-bold z-10 whitespace-nowrap overflow-hidden">
                     <p className="text-2xl">{props.name}</p>
                     <p className="text-md">{props.artists.join(' & ')}</p>
                     <p className="text-4xl">{dayjs(props.duration).format('mm:ss')}</p>
