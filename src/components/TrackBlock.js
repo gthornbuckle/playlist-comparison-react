@@ -18,12 +18,12 @@ function TrackBlock(props){
     return (
         <div className="relative">
             <div className="trackBlock h-[200px] text-white" style={getStyle(props.playlistTheme, props.duration)}>
-                <div className="pl-5 pt-2 flex flex-col items-start text-left font-sans font-bold">
+                <div className="pl-5 pt-2 flex flex-col items-start text-left font-sans font-bold z-10 absolute">
                     <p className="text-2xl">{props.name}</p>
                     <p className="text-md">{props.artists.join(' & ')}</p>
                     <p className="text-4xl">{dayjs(props.duration).format('mm:ss')}</p>
                 </div>
-                <div className="bg-cover bg-center opacity-10 z-10 absolute top-0 grayscale" style= {{backgroundImage: `url(${props.artwork})`, height: 200, width: `${Math.floor(props.duration/1000)}px`}}></div>
+                <div className="bg-cover bg-center opacity-10 z-0 absolute top-0 grayscale" style= {{backgroundImage: `url(${props.artwork})`, height: 200, width: `${Math.floor(props.duration/1000)}px`}}></div>
             </div>
         </div>
     )

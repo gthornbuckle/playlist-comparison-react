@@ -15,7 +15,7 @@ function PlaylistInfo(props){
 
     return(
     <div className="font-bold text-white pl-2 pr-5 flex flex-col text-left font-sans h-[200px]"
-    style={{backgroundColor: props.playlistTheme[2]}}>
+    style={{backgroundColor: props.playlistTheme[2], transform: "rotateX(180deg)"}}>
         <p className="text-2xl pt-4">{props.playlistInfo.name}</p>
         <p className="text-md">{props.playlistInfo.tracks.total} tracks</p>
         <p className="text-4xl pb-4">{dayjs(playlistLength(props.playlistInfo.tracks.items)).format('hh:mm:ss')}</p>

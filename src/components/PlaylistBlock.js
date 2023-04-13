@@ -33,7 +33,7 @@ const generatePlaylist = arr =>{
 function PlaylistBlock(props){
 
     return(
-    <div className="flex flex-row">
+    <div className="flex flex-row" style={{transform: "rotateX(180deg)"}}>
         {generatePlaylist(props.trackData).map(track =><TrackBlock 
             key={track.id}
             id={track.id}
