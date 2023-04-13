@@ -23,7 +23,7 @@ function TrackBlock(props){
                     <p className="text-md">{props.artists.join(' & ')}</p>
                     <p className="text-4xl">{dayjs(props.duration).format('mm:ss')}</p>
                 </div>
-                <div className="bg-cover bg-center opacity-10 z-10 absolute top-0" style= {{backgroundImage: `url(${props.artwork})`, height: 200, width: `${Math.floor(props.duration/1000)}px`}}></div>
+                <div className="bg-cover bg-center opacity-10 z-10 absolute top-0 grayscale" style= {{backgroundImage: `url(${props.artwork})`, height: 200, width: `${Math.floor(props.duration/1000)}px`}}></div>
             </div>
         </div>
     )
