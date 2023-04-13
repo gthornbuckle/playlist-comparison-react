@@ -2,16 +2,21 @@ import './App.css';
 import React from 'react'
 import SearchInfoWrapper from './components/SearchInfoWrapper';
 import PlaylistWrapper from './components/PlaylistWrapper';
-import v2TestData from './assets/testdata_info.json';
+import v1TestData from './testdata/testdata_info_v1.json';
+import v2TestData from './testdata/testdata_info.json';
 
-let response = v2TestData;
+let playlistArray = [];
+
+playlistArray.push(v1TestData);
+playlistArray.push(v2TestData);
 
 function App() {
+  console.log(playlistArray);
   return (
     <div className="App">
       <SearchInfoWrapper/>
       <PlaylistWrapper
-      playlistData={response}/>
+      playlistData={playlistArray}/>
     </div>
   );
 }

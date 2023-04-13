@@ -11,9 +11,17 @@ function PlaylistWrapper(props){
 
     return(
     <div className="flex flex-row">
-        <PlaylistInfo playlistInfo={props.playlistData} playlistTheme={playlistTheme}/>
-        <div ref={scrollHorizontal} className=" basis-5/6 overflow-x-scroll">
-            <PlaylistBlock trackData={props.playlistData.tracks.items} playlistTheme={playlistTheme}/>
+        <div className="basis-1/6 flex flex-col justify-stretch">
+            {props.playlistData.map(playlist =><PlaylistInfo
+            key={playlist.id}
+            playlistInfo={playlist} 
+            playlistTheme={playlistTheme}/>)}
+        </div>
+        <div ref={scrollHorizontal} className=" basis-5/6 overflow-x-scroll overflow-y-hidden">
+            {props.playlistData.map(playlist =><PlaylistBlock
+            key={playlist.id}
+            trackData={playlist.tracks.items} 
+            playlistTheme={playlistTheme}/>)}
         </div>
     </div>
     );
