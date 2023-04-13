@@ -14,7 +14,7 @@ const playlistLength = arr =>{
 function PlaylistInfo(props){
 
     return(
-    <div className="font-bold text-white pl-2 pr-5 flex flex-col justify-between text-left font-sans"
+    <div className="font-bold text-white pl-2 pr-5 flex flex-col text-left font-sans h-[200px]"
     style={{backgroundColor: props.playlistTheme[2]}}>
         <p className="text-2xl pt-4">{props.playlistInfo.name}</p>
         <p className="text-md">{props.playlistInfo.tracks.total} tracks</p>
