@@ -1,5 +1,5 @@
 import React from "react";
-import dayjs from "dayjs";
+import format from 'format-duration';
 
 let themeColour = 1;
 
@@ -10,7 +10,7 @@ const getStyle = (theme, duration) =>{
         themeColour = 0;
     }
 
-    return {width: `${Math.floor(duration/1000)}px`,
+    return {width: `${Math.round(duration/1000)}px`,
             backgroundColor: theme[themeColour]}
 }
 
@@ -21,7 +21,7 @@ function TrackBlock(props){
                 <div className="pl-5 pt-2 flex flex-col items-start text-left font-sans font-bold z-10 whitespace-nowrap overflow-hidden">
                     <p className="text-2xl">{props.name}</p>
                     <p className="text-md">{props.artists.join(' & ')}</p>
-                    <p className="text-4xl">{dayjs(props.duration).format('mm:ss')}</p>
+                    <p className="text-4xl">{format(props.duration)}</p>
                 </div>
                 <div className="bg-cover bg-center opacity-10 z-0 absolute top-0 grayscale" style= {{backgroundImage: `url(${props.artwork})`, height: 200, width: `${Math.floor(props.duration/1000)}px`}}></div>
             </div>

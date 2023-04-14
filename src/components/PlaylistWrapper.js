@@ -1,5 +1,4 @@
 import React from "react";
-import dayjs from "dayjs";
 import PlaylistInfo from './PlaylistInfo';
 import PlaylistBlock from './PlaylistBlock';
 import ShuffleTheme from './Themes'
@@ -34,7 +33,7 @@ function PlaylistWrapper(props){
                 playlistInfo={playlist} 
                 playlistTheme={themes[i]}/>)}
             </div>
-            <div ref={scrollHorizontal} className=" basis-5/6 overflow-x-scroll overflow-y-hidden" style={{transform: "rotateX(180deg)"}}>
+            <div ref={scrollHorizontal} className=" basis-5/6 overflow-x-scroll overflow-y-hidden shrink-0" style={{transform: "rotateX(180deg)"}}>
                 <div className="text-teal-500 flex flex-row absolute z-10 bottom-0" style={{transform: "rotateX(180deg)"}}>
                     {hours.map((hour, i) =><p
                     key={`hour-${i}`}

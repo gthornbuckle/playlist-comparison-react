@@ -1,5 +1,5 @@
 import React from "react";
-import dayjs from "dayjs";
+import format from 'format-duration';
 
 const playlistLength = arr =>{
     let totalDuration = 0;
@@ -7,6 +7,7 @@ const playlistLength = arr =>{
     arr.forEach(e =>{
         totalDuration += e.track.duration_ms;
     })
+    console.log(totalDuration);
 
     return totalDuration;
 }
@@ -18,7 +19,7 @@ function PlaylistInfo(props){
     style={{backgroundColor: props.playlistTheme[2], transform: "rotateX(180deg)"}}>
         <p className="text-2xl pt-4">{props.playlistInfo.name}</p>
         <p className="text-md">{props.playlistInfo.tracks.total} tracks</p>
-        <p className="text-4xl pb-4">{dayjs(playlistLength(props.playlistInfo.tracks.items)).format('hh:mm:ss')}</p>
+        <p className="text-4xl pb-4">{format(playlistLength(props.playlistInfo.tracks.items))}</p>
     </div>
     );
 }
