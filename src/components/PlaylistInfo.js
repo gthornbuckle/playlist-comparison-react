@@ -7,7 +7,6 @@ const playlistLength = arr =>{
     arr.forEach(e =>{
         totalDuration += e.track.duration_ms;
     })
-    console.log(totalDuration);
 
     return totalDuration;
 }
@@ -18,7 +17,7 @@ function PlaylistInfo(props){
     <div className="font-bold text-white pl-2 pr-5 flex flex-col text-left font-sans h-[200px]"
     style={{backgroundColor: props.playlistTheme[2], transform: "rotateX(180deg)"}}>
         <p className="text-2xl pt-4">{props.playlistInfo.name}</p>
-        <p className="text-md">{props.playlistInfo.tracks.total} tracks</p>
+        <p className="text-md">{props.playlistInfo.tracks.items.length} tracks</p>
         <p className="text-4xl pb-4">{format(playlistLength(props.playlistInfo.tracks.items))}</p>
     </div>
     );

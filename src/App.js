@@ -10,7 +10,6 @@ let playlistArray = [];
 
 playlistArray.push(v1TestData);
 playlistArray.push(v2TestData);
-playlistArray.push(track12TestData);
 
 function App() {
   console.log(playlistArray);
