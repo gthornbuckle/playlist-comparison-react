@@ -1,9 +1,12 @@
 import { React, useState } from "react";
+import { motion, AnimatePresence } from 'framer-motion'
 import PlaylistInfo from './PlaylistInfo';
 import PlaylistBlock from './PlaylistBlock';
 import ShuffleTheme from './Themes'
 import format from 'format-duration';
 import { HorizontalScroll } from './HorizontalScroll'
+import Animatedlink from "./AnimatedLink";
+import HideIcon from "./HideIcon";
 
 const themes = ShuffleTheme();
 let expandedInfo = ['Song Name', 'Artist', 100000, 'url', 'artwork'];
@@ -32,10 +35,14 @@ const getHourDividers = arr =>{
 function PlaylistWrapper(props){
     const scrollHorizontal = HorizontalScroll();
 	const [selectedBlock, setSelectedBlock] = useState(false);
+	const [blockData, setBlockData] = useState(expandedInfo);
 
 	const displayExpandedInfo = data =>{
-		expandedInfo = data;
-		setSelectedBlock(!selectedBlock);
+		console.log(data);
+		setBlockData(data);
+		if(selectedBlock === false){
+			setSelectedBlock(true)
+		}
 	}
     
     return(
@@ -66,14 +73,19 @@ function PlaylistWrapper(props){
 				<div className="h-[24px]"></div>
 			</div>
 		</div>
-		<div className="fixed bottom-10 left-10 h-96 w-96 bg-pink-500 drop-shadow-lg bg-contain flex items-end" style={{backgroundImage: `url(${expandedInfo[4]})`}}>
-            <div className="h-200 w-full flex flex-col items-start justify-items-end text-white bg-gradient-to-r from-black text-lg overflow-hidden">
-				<p>{expandedInfo[0]}</p>
-				<p>{expandedInfo[1]}</p>
-				<p>{format(expandedInfo[2])}</p>
-				<a href={expandedInfo[3]}>Link</a>
-			</div>
-		</div>
+		<AnimatePresence>
+  			{selectedBlock && (
+				<motion.div className="fixed bottom-10 left-10 h-96 w-96 bg-pink-500 drop-shadow-lg bg-contain flex items-end" style={{backgroundImage: `url(${blockData[4]})`}}>
+					<HideIcon click={() =>{setSelectedBlock(false)}}/>
+					<motion.div className="h-300 w-full pl-4 pb-2 flex flex-col items-start justify-items-end text-white text-left bg-black/50 backdrop-blur-sm text-lg overflow-hidden">
+						<motion.p className="text-2xl">{blockData[0]}</motion.p>
+						<motion.p>{blockData[1]}</motion.p>
+						<motion.p className="text-xl">{format(blockData[2])}</motion.p>
+						<Animatedlink url={blockData[3]}/>
+					</motion.div>
+				</motion.div>
+			)}
+		</AnimatePresence>
 		</>
     );
 }
