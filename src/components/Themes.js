@@ -8,6 +8,15 @@ const ShuffleThemes = () =>{
         ["#f1309c", "#f459b0", "#c3478d"]
     ];
 
+    // const colourList = [
+    //     ["#67e8f9", "#22d3ee", "#0891b2"],
+    //     ["#86efac", "#4ade80", "#16a34a"],
+    //     ["#fda4af", "#fb7185", "#e11d48"],
+    //     ["#9921f7", "#7a1ac6", "#62159e"],
+    //     ["#fdba74", "#fb923c", "#ea580c"],
+    //     ["#f9a8d4", "#f472b6", "#db2777"]
+    // ];
+
     let i = colourList.length, randi;
 
     while (i !== 0){
