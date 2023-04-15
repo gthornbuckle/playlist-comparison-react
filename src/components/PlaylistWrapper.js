@@ -82,8 +82,7 @@ function PlaylistWrapper(props){
 				exit={{ opacity: 0 }}>
 					<HideIcon click={() =>{setSelectedBlock(false)}}/>
 					<motion.div className="h-300 w-full pl-4 pb-2 flex flex-col items-start justify-items-end text-white text-left bg-black/50 backdrop-blur-sm text-lg overflow-hidden">
-						<motion.p className="text-2xl">{blockData[0]}</motion.p>
-						<motion.p>{blockData[1]}</motion.p>
+						<motion.p className="text-xl">{blockData[0]} - {blockData[1]}</motion.p>
 						<motion.p className="text-xl">{format(blockData[2])}</motion.p>
 						<Animatedlink url={blockData[3]}/>
 					</motion.div>
