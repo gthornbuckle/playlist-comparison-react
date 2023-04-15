@@ -30,6 +30,35 @@ code {
   background: #334155
 }
 
-.frosted{
-  backdrop-filter: blur(2px);
+.leviText {
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-fill-color: #0000;
+  /* -webkit-animation:leviathan-background-animation 3s linear infinite; */
+  animation: leviathan-background-animation 3s linear infinite;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  background-image: url(../src/testdata/leviathan-background.png);
+  background-repeat: repeat;
+  color: #a50020;
+}
+
+@-webkit-keyframes leviathan-background-animation {
+  0% {
+      background-position: 0 0
+  }
+
+  to {
+      background-position: 0 128px
+  }
+}
+
+@keyframes leviathan-background-animation {
+  0% {
+      background-position: 0 0
+  }
+
+  to {
+      background-position: 0 128px
+  }
 }

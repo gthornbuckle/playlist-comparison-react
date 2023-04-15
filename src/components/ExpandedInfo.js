@@ -27,7 +27,9 @@ function ExpandedInfo(props){
             transition={{easeInOut: "linear", duration: 0.4}}>
                 <HideIcon click={props.setVisible}/>
                 <motion.div className="h-300 w-full pl-4 pb-2 flex flex-col items-start justify-items-end text-white text-left bg-black/70 text-lg overflow-hidden">
-                    <motion.p className="text-xl">{props.data[0]} - {props.data[1]}</motion.p>
+                    <motion.p className="text-xl"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}>{props.data[0]} - {props.data[1]}</motion.p>
                     <motion.p className="text-xl">{format(props.data[2])}</motion.p>
                     <Animatedlink url={props.data[3]}/>
                 </motion.div>
