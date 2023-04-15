@@ -3,10 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import PlaylistInfo from './PlaylistInfo';
 import PlaylistBlock from './PlaylistBlock';
 import ShuffleTheme from './Themes'
-import format from 'format-duration';
 import { HorizontalScroll } from './HorizontalScroll'
-import Animatedlink from "./AnimatedLink";
-import HideIcon from "./HideIcon";
+import ExpandedInfo from './ExpandedInfo'
 
 const themes = ShuffleTheme();
 let expandedInfo = ['Song Name', 'Artist', 100000, 'url', 'artwork'];
@@ -74,19 +72,10 @@ function PlaylistWrapper(props){
 			</div>
 		</div>
 		<AnimatePresence>
-  			{selectedBlock && (
-				<motion.div className="fixed bottom-10 left-10 h-96 w-96 bg-pink-500 drop-shadow-lg bg-contain flex items-end"
-				style={{backgroundImage: `url(${blockData[4]})`}}
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				exit={{ opacity: 0 }}>
-					<HideIcon click={() =>{setSelectedBlock(false)}}/>
-					<motion.div className="h-300 w-full pl-4 pb-2 flex flex-col items-start justify-items-end text-white text-left bg-black/50 backdrop-blur-sm text-lg overflow-hidden">
-						<motion.p className="text-xl">{blockData[0]} - {blockData[1]}</motion.p>
-						<motion.p className="text-xl">{format(blockData[2])}</motion.p>
-						<Animatedlink url={blockData[3]}/>
-					</motion.div>
-				</motion.div>
+			{selectedBlock &&(
+				<ExpandedInfo
+				data={blockData}
+				setVisible={() =>{setSelectedBlock(false)}}/>
 			)}
 		</AnimatePresence>
 		</>

@@ -36,8 +36,8 @@ function HideIcon(props){
             onMouseOver={() => setHover(true)}
             onMouseOut={() => setHover(false)}>
             <motion.div className="absolute bottom-1 right-2 z-20">
-                <motion.svg width="40" height="40" viewBox="0 0 20.21 20.21" stroke="#ec4899" stroke-width="1.5" stroke-linecap="round" fill="none">
-                    <motion.line class="cls-1" x1="1" y1="19.21" x2="19.21" y2="1"
+                <motion.svg width="40" height="40" viewBox="0 0 20.21 20.21" stroke="#ec4899" strokeWidth="1.5" strokeLinecap="round" fill="none">
+                    <motion.line className="cls-1" x1="1" y1="19.21" x2="19.21" y2="1"
                     initial={false}
                     animate={isHovered ? "visible" : "hidden"}
                     variants={lineVariants}
@@ -45,12 +45,12 @@ function HideIcon(props){
                 </motion.svg>
             </motion.div>
             <motion.div className="absolute bottom-1 right-2 z-10">
-                <motion.svg viewBox="0 0 26.96 18.33" stroke-width="1.5" fill="none"
+                <motion.svg viewBox="0 0 26.96 18.33" strokeWidth="1.5" fill="none"
                 initial={false}
                 animate={isHovered ? "visible" : "hidden"}
                 variants={variants}>
-                    <motion.path class="cls-1" d="M26.36,9.16s-5.77,8.67-12.88,8.67S.6,9.16.6,9.16,6.37.5,13.48.5,26.36,9.16,26.36,9.16Z"/>
-                    <motion.circle class="cls-1" cx="13.48" cy="9.16" r="5.11"/>
+                    <motion.path className="cls-1" d="M26.36,9.16s-5.77,8.67-12.88,8.67S.6,9.16.6,9.16,6.37.5,13.48.5,26.36,9.16,26.36,9.16Z"/>
+                    <motion.circle className="cls-1" cx="13.48" cy="9.16" r="5.11"/>
                 </motion.svg>
             </motion.div>
         </motion.div>
