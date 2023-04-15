@@ -8,6 +8,7 @@ const playlistLength = arr =>{
         totalDuration += e.track.duration_ms;
     })
 
+
     return totalDuration;
 }
 

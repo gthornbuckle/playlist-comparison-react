@@ -31,19 +31,20 @@ const generatePlaylist = arr =>{
 }
 
 function PlaylistBlock(props){
-
+    
     return(
-    <div className="flex flex-row shrink-0" style={{transform: "rotateX(180deg)"}}>
-        {generatePlaylist(props.trackData).map(track =><TrackBlock 
-            key={track.id}
-            id={track.id}
-            name={track.name}
-            duration={track.duration}
-            artists={track.artistArr}
-            artwork={track.artwork}
-            url={track.url}
-            playlistTheme={props.playlistTheme}/>)}
-    </div>
+        <div className="flex flex-row shrink-0" style={{transform: "rotateX(180deg)"}}>
+            {generatePlaylist(props.trackData).map(track =><TrackBlock 
+                key={track.id}
+                id={track.id}
+                name={track.name}
+                duration={track.duration}
+                artists={track.artistArr}
+                artwork={track.artwork}
+                url={track.url}
+                playlistTheme={props.playlistTheme}
+                expandinfo={props.expandinfo}/>)}
+        </div>
     );
 }
 
