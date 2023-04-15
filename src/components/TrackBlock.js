@@ -4,41 +4,20 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 let themeColour = 1;
 
-const getStyle = (theme, duration) =>{
-    if (themeColour === 0){
-        themeColour = 1;
-    }else if(themeColour === 1){
-        themeColour = 0;
+const getStyle = (theme, duration, index) =>{
+    const isOdd = num =>{
+        return num % 2;
     }
 
     return {width: `${Math.round(duration/1000)}px`,
-            backgroundColor: theme[themeColour]}
-}
-
-const toggleOpen = bool =>{
-    switch (bool){
-        case true:
-            return {
-                position: "fixed",
-                height: 500,
-                width: 500,
-                zIndex: 10
-            };
-        case false:
-            return {
-                position: "relative",
-                height: 200
-            }
-    }
+            backgroundColor: theme[isOdd(index)]}
 }
 
 function TrackBlock(props){
-
-    // props.displayData([props.name, props.artists, props.duration, props.url, props.artwork]);
     
     return (
             <motion.div className="h-[200px]" onClick={() =>{props.expandinfo([props.name, props.artists.join(' & '), props.duration, props.url, props.artwork])}}>
-                <motion.div className="h-full text-white" style={getStyle(props.playlistTheme, props.duration)} 
+                <motion.div className="h-full text-white" style={getStyle(props.playlistTheme, props.duration, props.trackIndex)} 
                 onClick={props.expand}>
                     <motion.div className="pl-5 pt-2 flex flex-col items-start text-left font-sans font-bold z-10 whitespace-nowrap overflow-hidden">
                         <motion.p className="text-2xl">{props.name}</motion.p>

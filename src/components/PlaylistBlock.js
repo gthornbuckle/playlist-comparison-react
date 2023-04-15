@@ -34,7 +34,7 @@ function PlaylistBlock(props){
     
     return(
         <div className="flex flex-row shrink-0" style={{transform: "rotateX(180deg)"}}>
-            {generatePlaylist(props.trackData).map(track =><TrackBlock 
+            {generatePlaylist(props.trackData).map((track, i) =><TrackBlock 
                 key={track.id}
                 id={track.id}
                 name={track.name}
@@ -43,7 +43,8 @@ function PlaylistBlock(props){
                 artwork={track.artwork}
                 url={track.url}
                 playlistTheme={props.playlistTheme}
-                expandinfo={props.expandinfo}/>)}
+                expandinfo={props.expandinfo}
+                trackIndex={i}/>)}
         </div>
     );
 }
