@@ -16,7 +16,7 @@ const getStyle = (theme, duration, index) =>{
 function TrackBlock(props){
     
     return (
-            <motion.div className="h-[200px]" onClick={() =>{props.expandinfo([props.name, props.artists.join(' & '), props.duration, props.url, props.artwork])}}>
+            <motion.div className="h-[200px] cursor-pointer" onClick={() =>{props.expandinfo([props.name, props.artists.join(' & '), props.duration, props.url, props.artwork])}}>
                 <motion.div className="h-full text-white" style={getStyle(props.playlistTheme, props.duration, props.trackIndex)} 
                 onClick={props.expand}>
                     <motion.div className="pl-5 pt-2 flex flex-col items-start text-left font-sans font-bold z-10 whitespace-nowrap overflow-hidden">
