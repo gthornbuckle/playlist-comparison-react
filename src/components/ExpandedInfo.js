@@ -6,10 +6,12 @@ import HideIcon from './HideIcon';
 
 const variants = {
     visible: {
-        opacity: 1
+        opacity: 1,
+        left: "2.5rem"
     },
     hidden: {
-        opacity: 0
+        opacity: 0,
+        left: "-500px"
     }
 }
 
@@ -21,7 +23,8 @@ function ExpandedInfo(props){
             variants={variants}
             initial={"hidden"}
             animate={"visible"}
-            exit={"hidden"}>
+            exit={"hidden"}
+            transition={{easeInOut: "linear", duration: 0.4}}>
                 <HideIcon click={props.setVisible}/>
                 <motion.div className="h-300 w-full pl-4 pb-2 flex flex-col items-start justify-items-end text-white text-left bg-black/70 text-lg overflow-hidden">
                     <motion.p className="text-xl">{props.data[0]} - {props.data[1]}</motion.p>
