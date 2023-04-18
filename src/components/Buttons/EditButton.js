@@ -43,7 +43,7 @@ const gearVariants ={
     }
 }
 
-function EditButton(props){
+function EditButton(){
     const [isHovered, setHover] = useState(false);
     
     return (

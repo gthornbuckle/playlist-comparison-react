@@ -22,7 +22,8 @@ const noteVariants = {
             rotate: {
                 repeat: Infinity, 
                 repeatType: "reverse", 
-                duration: 0.2
+                duration: 0.2,
+                ease: "linear"
             }
         }
     }
@@ -37,7 +38,7 @@ const plusVariants ={
         transition: {
                 repeat: Infinity, 
                 repeatType: "reverse", 
-                duration: 0.4
+                duration: 0.5
         }
     }
 }
