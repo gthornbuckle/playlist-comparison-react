@@ -45,7 +45,7 @@ function PlaylistWrapper(props){
     
     return(
 		<>
-		<div className="flex flex-row">
+		<div className="flex flex-row pt-16">
 			<div className="basis-1/6" style={{transform: "rotateX(180deg)"}}>
 				{props.playlistData.map((playlist, i) =><PlaylistInfo
 				key={playlist.id}

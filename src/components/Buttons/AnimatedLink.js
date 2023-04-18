@@ -16,7 +16,7 @@ function Animatedlink(props){
     const [isHovered, setHover] = useState(false);
     
     return (
-        <motion.a className=" font-bold underline decoration-wavy decoration-2" href={props.url}
+        <motion.a className=" font-bold underline decoration-wavy decoration-2 w-fit" href={props.url}
         initial={false}
         animate={isHovered ? "visible" : "hidden"}
         variants={variants}
