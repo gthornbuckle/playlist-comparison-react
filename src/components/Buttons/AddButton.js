@@ -38,7 +38,7 @@ const plusVariants ={
         transition: {
                 repeat: Infinity, 
                 repeatType: "reverse", 
-                duration: 0.5
+                duration: 0.3
         }
     }
 }

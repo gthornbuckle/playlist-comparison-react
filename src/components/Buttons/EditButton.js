@@ -44,29 +44,30 @@ const gearVariants ={
     }
 }
 
-const checkDisabled = bool =>{
-    switch(bool){
-        case true: return{
-            cursor: "pointer"
-        }
-        case false: return {
-            pointerEvents: "none",
-            opacity: 0.5
-        }
-        default: return {
-            cursor: "pointer"
-        }
-    }
-}
+// let buttonEnabled = {};
+
+// const checkEnabled = bool =>{
+//     switch(bool){
+//         case true: buttonEnabled = {
+//             cursor: "pointer"
+//         }
+//         case false: buttonEnabled = {
+//             pointerEvents: "none",
+//             opacity: 0.5
+//         }
+//         default: buttonEnabled = {
+//             cursor: "pointer"
+//         }
+//     }
+// }
 
 function EditButton(props){
     const [isHovered, setHover] = useState(false);
-    const [isEnabled, setEnabled] = useState(true);
     
     return (
         <div className="px-3" onMouseOver={() => setHover(true)} onMouseOut={() => setHover(false)}
-        onClick={() =>{props.displayEditor(); setEnabled(false);}}
-        style={checkDisabled(isEnabled)}>
+        onClick={props.displayEditor}
+        >
             <motion.p className="text-teal-500 text-2xl pl-11"
             initial={false}
             animate={isHovered ? "hover" : "initial"}

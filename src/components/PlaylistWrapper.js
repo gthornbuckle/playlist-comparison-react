@@ -32,8 +32,6 @@ function PlaylistWrapper(props){
 			setSelectedBlock(true)
 		}
 	}
-
-	console.log(props.playlistData);
     
     return(
 		<>

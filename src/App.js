@@ -6,15 +6,13 @@ import Menu from './components/Menu';
 import v1TestData from './testdata/testdata_info_v1.json';
 import v2TestData from './testdata/testdata_info_v2.json';
 import track12TestData from './testdata/testdata_12tracks.json'
-import PlaylistEditorWrapper from './components/PlaylistEditorWrapper';
+import PlaylistEditorWrapper from './components/Edit/PlaylistEditorWrapper';
 import HandleData from './components/HandleData'
 
 let playlistArray = [];
 
 playlistArray.push(v1TestData);
 playlistArray.push(v2TestData);
-
-// HandleData(playlistArray);
 
 function App() {
   const [editorVisible, setEditorVisible] = useState(false);
@@ -24,10 +22,11 @@ function App() {
     <div className="App">
       <Menu 
       displayEditor={() => {setEditorVisible(true)}}
-      editorActive={editorVisible}/>
+      />
       {editorVisible &&(
       <PlaylistEditorWrapper
-      playlistData={playlistArray}/>
+      playlistData={HandleData(playlistArray)}
+      closeEditor={() =>{setEditorVisible(false)}}/>
       )}
       <PlaylistWrapper
       playlistData={HandleData(playlistArray)}/>
