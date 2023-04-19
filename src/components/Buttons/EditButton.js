@@ -65,7 +65,7 @@ function EditButton(props){
     const [isHovered, setHover] = useState(false);
     
     return (
-        <div className="px-3" onMouseOver={() => setHover(true)} onMouseOut={() => setHover(false)}
+        <div className="px-3 cursor-pointer" onMouseOver={() => setHover(true)} onMouseOut={() => setHover(false)}
         onClick={props.displayEditor}
         >
             <motion.p className="text-teal-500 text-2xl pl-11"

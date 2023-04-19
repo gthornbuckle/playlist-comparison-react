@@ -1,5 +1,6 @@
 import './App.css';
 import { React, useState}  from 'react'
+import { AnimatePresence } from 'framer-motion';
 import SearchInfoWrapper from './components/SearchInfoWrapper';
 import PlaylistWrapper from './components/PlaylistWrapper';
 import Menu from './components/Menu';
@@ -23,11 +24,13 @@ function App() {
       <Menu 
       displayEditor={() => {setEditorVisible(true)}}
       />
-      {editorVisible &&(
-      <PlaylistEditorWrapper
-      playlistData={HandleData(playlistArray)}
-      closeEditor={() =>{setEditorVisible(false)}}/>
-      )}
+      <AnimatePresence>
+        {editorVisible &&(
+        <PlaylistEditorWrapper
+        playlistData={HandleData(playlistArray)}
+        closeEditor={() =>{setEditorVisible(false)}}/>
+        )}
+      </AnimatePresence>
       <PlaylistWrapper
       playlistData={HandleData(playlistArray)}/>
     </div>

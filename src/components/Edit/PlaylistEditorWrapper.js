@@ -1,13 +1,41 @@
-import { React, useState } from "react";
-import { motion, AnimatePresence, Reorder } from 'framer-motion';
+import { React } from "react";
+import { motion } from 'framer-motion';
 import TrackList from "./ListedTracks";
+
+const container = {
+    visible: {
+        opacity: 0.8,
+    },
+    hidden: {
+        opacity: 0,
+    }
+}
+
+const editor = {
+    visible: {
+        y: 0,
+        opacity: 1
+
+    },
+    hidden: {
+        y: -500,
+        opacity: 0
+    }
+}
 
 function PlaylistEditorWrapper(props){
     
     return(
-		<AnimatePresence>
+        <motion.div>
         <div className="fixed z-20 w-full h-full flex items-center justify-center">
-            <div className="w-10/12 h-3/4 px-4 py-4 bg-slate-800 drop-shadow-lg overflow-hidden">
+            <motion.div 
+                className="w-10/12 h-3/4 px-4 py-4 bg-slate-800 drop-shadow-lg overflow-hidden"
+                variants={editor}
+                initial={"hidden"}
+                animate={"visible"}
+                exit={"hidden"}
+                transition={{type: "spring", bounce: 0.4, duration: 0.8}}
+            >
                 <div className="cursor-pointer fixed right-4 text-teal-500 text-2xl"
                 onClick={props.closeEditor}
                 >X</div>
@@ -21,10 +49,17 @@ function PlaylistEditorWrapper(props){
                         </span>
                     </span>)}
                 </span>
-            </div>
+            </motion.div>
         </div>
-        <div className="fixed z-10 w-full h-full bg-slate-900 opacity-80" />
-		</AnimatePresence>
+        <motion.div 
+            className="fixed z-10 w-full h-full bg-slate-900 opacity-80"
+            variants={container}
+            initial={"hidden"}
+            animate={"visible"}
+            exit={"hidden"}
+            transition={{ duration: 0.5}}
+        />
+        </motion.div>
     );
 }
 
