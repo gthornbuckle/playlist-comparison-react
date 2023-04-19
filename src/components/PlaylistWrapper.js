@@ -9,21 +9,11 @@ import ExpandedInfo from './ExpandedInfo'
 const themes = ShuffleTheme();
 let expandedInfo = ['Song Name', 'Artist', 100000, 'url', 'artwork'];
 
-const playlistLength = arr =>{
-    let totalDuration = 0;
-
-    arr.forEach(e =>{
-        totalDuration += e.track.duration_ms;
-    })
-
-    return totalDuration /= 3600000;
-}
-
 const getHourDividers = arr =>{
     let playlistDurations = [];
 
     arr.forEach(e =>{
-        playlistDurations.push(playlistLength(e.tracks.items));
+        playlistDurations.push(e.totalDuration /=3600000);
     })
 
     const hours = [...Array(Math.ceil(Math.max(...playlistDurations))+1).keys()].slice(1);
@@ -42,6 +32,8 @@ function PlaylistWrapper(props){
 			setSelectedBlock(true)
 		}
 	}
+
+	console.log(props.playlistData);
     
     return(
 		<>
@@ -49,7 +41,9 @@ function PlaylistWrapper(props){
 			<div className="basis-1/6" style={{transform: "rotateX(180deg)"}}>
 				{props.playlistData.map((playlist, i) =><PlaylistInfo
 				key={playlist.id}
-				playlistInfo={playlist} 
+				playlistName={playlist.name}
+				playlistDuration={playlist.totalDuration} 
+				playlistLength={playlist.totalTracks}  
 				playlistTheme={themes[i]}/>)}
 			</div>
 			<div ref={scrollHorizontal} className=" basis-5/6 overflow-x-scroll overflow-y-hidden shrink-0" style={{transform: "rotateX(180deg)"}}>
@@ -64,7 +58,7 @@ function PlaylistWrapper(props){
 				<div>
 					{props.playlistData.map((playlist, i) =><PlaylistBlock
 					key={playlist.id}
-					trackData={playlist.tracks.items} 
+					trackData={playlist.tracks} 
 					playlistTheme={themes[i]}
 					expandinfo={displayExpandedInfo}/>)}
 				</div>
