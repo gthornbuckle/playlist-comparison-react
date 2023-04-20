@@ -7,7 +7,7 @@ import Menu from './components/Menu';
 import v1TestData from './testdata/testdata_info_v1.json';
 import v2TestData from './testdata/testdata_info_v2.json';
 import track12TestData from './testdata/testdata_12tracks.json'
-import PlaylistEditorWrapper from './components/Edit/PlaylistEditorWrapper';
+import PlaylistEditorWrapper from './components/PlaylistEditor/PlaylistEditorWrapper';
 import HandleData from './components/HandleData'
 
 
@@ -19,7 +19,7 @@ playlistArray.push(v2TestData);
 
 function App() {
   // const [playlists, setPlaylists] = useState(initialData);
-  const [editorVisible, setEditorVisible] = useState(true);
+  const [editorVisible, setEditorVisible] = useState(false);
 
   return (
     <div className="App">

@@ -1,9 +1,10 @@
-import { React } from "react";
-import { motion } from 'framer-motion';
+import { React, useState } from "react";
+import { motion, AnimatePresence } from 'framer-motion';
 import TrackList from "./ListedTracks";
 import CloseButton from "../Buttons/CloseButton";
 import DeleteButton from "../Buttons/DeleteButton"
 import AddTrackButton from "../Buttons/AddTrackButton";
+import AddTrackModal from "./AddTrackModal";
 
 const container = {
     visible: {
@@ -27,6 +28,7 @@ const editor = {
 }
 
 function PlaylistEditorWrapper(props){
+    const [modalVisible, setModalVisible] = useState(false);
     
     return(
         <motion.div>
@@ -47,7 +49,7 @@ function PlaylistEditorWrapper(props){
                         <div className="flex flex-row justify-between bg-slate-700 rounded-md">
                             <p className="p-2 text-left text-2xl text-white">{playlist.name}</p>
                             <div>
-                                <AddTrackButton/>
+                                <AddTrackButton addTrack={() =>{setModalVisible(true)}}/>
                                 <DeleteButton />
                             </div>
                         </div>
@@ -64,6 +66,12 @@ function PlaylistEditorWrapper(props){
                 </div>
             </motion.div>
         </div>
+        <AnimatePresence>
+            {modalVisible &&(
+            <AddTrackModal
+            closeModal={() =>{setModalVisible(false)}}/>
+            )}
+        </AnimatePresence>
         <motion.div 
             className="fixed z-10 w-full h-full bg-slate-900 opacity-80"
             variants={container}
