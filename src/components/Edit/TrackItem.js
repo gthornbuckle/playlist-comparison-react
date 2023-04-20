@@ -13,6 +13,14 @@ const dragVariants = {
   }
 }
 
+const checkStringLength = str =>{
+  if(str.length > 50){
+    return `${str.substr(0, 50)}...`;
+  } else{
+    return str;
+  }
+}
+
 function TrackItem(props){
 const [isDrag, setDrag] = useState(false);
 
@@ -26,7 +34,7 @@ const [isDrag, setDrag] = useState(false);
       animate={isDrag ? "dragging" : "initial"}
       variants={dragVariants}
     >
-      <p>{props.index +1}&nbsp;&nbsp;{props.item}</p>
+      <p className="overflow-hidden">{props.index +1}&nbsp;&nbsp;{checkStringLength(props.item)}</p>
     </Reorder.Item>
   );
 };

@@ -20,7 +20,7 @@ function ListedTracks(props){
       axis="y" 
       onReorder={setItems} 
       values={items}
-      className="relative h-2/5 overflow-y-auto bg-slate-600"
+      className="relative h-[52rem] overflow-y-auto bg-slate-600"
       layoutScroll
     >
       {items.map((track, i) => (

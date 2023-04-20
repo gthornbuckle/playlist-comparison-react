@@ -10,13 +10,16 @@ import track12TestData from './testdata/testdata_12tracks.json'
 import PlaylistEditorWrapper from './components/Edit/PlaylistEditorWrapper';
 import HandleData from './components/HandleData'
 
+
+
 let playlistArray = [];
 
 playlistArray.push(v1TestData);
 playlistArray.push(v2TestData);
 
 function App() {
-  const [editorVisible, setEditorVisible] = useState(false);
+  // const [playlists, setPlaylists] = useState(initialData);
+  const [editorVisible, setEditorVisible] = useState(true);
 
   return (
     <div className="App">

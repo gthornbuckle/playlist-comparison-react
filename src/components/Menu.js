@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from 'framer-motion';
-import AddButton from './Buttons/AddButton'
+import AddButton from './Buttons/AddPlaylistButton'
 import EditButton from "./Buttons/EditButton";
 
 function Menu(props){
