@@ -41,6 +41,7 @@ export default function HandleData(arr){
     let playlistData = [];
 
     arr.forEach(e =>{
+        
         let playListObj = {
             id: e.id,
             name: e.name,
@@ -48,9 +49,10 @@ export default function HandleData(arr){
             totalDuration: playlistLength(e.tracks.items),
             tracks: getTracks(e.tracks.items)
         };
-        
+
+        console.log(playListObj)
         playlistData.push(playListObj)
     })
-    
+
     return playlistData;
 }

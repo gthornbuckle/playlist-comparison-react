@@ -18,7 +18,6 @@ playlistArray.push(v2TestData);
 function App() {
   const [editorVisible, setEditorVisible] = useState(false);
 
-  console.log(HandleData(playlistArray));
   return (
     <div className="App">
       <Menu 
