@@ -1,8 +1,13 @@
 const playlistLength = arr =>{
     let totalDuration = 0;
 
-    arr.forEach(e =>{
-        totalDuration += e.track?.duration_ms;
+    arr.forEach((e, i) =>{
+        if(e.track === null){
+            console.log(`Track number ${i + 1} is null`);
+            return;
+        }else {
+        totalDuration += e.track.duration_ms;
+        }
     })
 
     return totalDuration;
@@ -23,16 +28,19 @@ const getTracks = arr =>{
 
     arr.forEach((e, i) =>{
         let playlistTrackObj = {};
-        console.log(`Track number ${i + 1} is ok`);
-
-        playlistTrackObj["id"] = e.track.id;
-        playlistTrackObj["name"] = e.track.name;
-        playlistTrackObj["duration"] = e.track.duration_ms;
-        playlistTrackObj["artistArr"] = getArtists(e.track.artists);
-        playlistTrackObj["artwork"] = e.track.album.images[0].url;
-        playlistTrackObj["url"] = e.track.external_urls.spotify;
-
-        tempPlaylist.push(playlistTrackObj);
+        if(e.track === null){
+            console.log(`Track number ${i + 1} is null`);
+            return;
+        }else {
+            playlistTrackObj["id"] = e.track.id;
+            playlistTrackObj["name"] = e.track.name;
+            playlistTrackObj["duration"] = e.track.duration_ms;
+            playlistTrackObj["artistArr"] = getArtists(e.track.artists);
+            playlistTrackObj["artwork"] = e.track.album.images[0].url;
+            playlistTrackObj["url"] = e.track.external_urls.spotify;
+    
+            tempPlaylist.push(playlistTrackObj);
+        }
     })
     
     return tempPlaylist;

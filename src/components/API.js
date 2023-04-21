@@ -10,7 +10,7 @@ export const spotifySearch = async query =>{
     spotifyToken = await getSpotifyToken();
     localStorage.setItem('Spotifytoken', JSON.stringify(spotifyToken));
 
-  }else if (Date.now() > JSON.parse(localStorage.getItem('Spotifytoken')) + 3600000){
+  }else if (Date.now() > JSON.parse(localStorage.getItem('Spotifytoken')).created + 3600000){
     console.log("Token expired");
     spotifyToken = await getSpotifyToken();
     localStorage.setItem('Spotifytoken', JSON.stringify(spotifyToken));
