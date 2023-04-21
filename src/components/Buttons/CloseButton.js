@@ -10,6 +10,11 @@ const variants = {
     }
 }
 
+const checkInitial = bool =>{
+    const closeStyle = bool ? {display: "none"} : {display: "block"};
+    return closeStyle;
+}
+
 function CloseButton(props){
     const [isHovered, setHover] = useState(false);
     
@@ -17,6 +22,7 @@ function CloseButton(props){
         <motion.div className="fixed right-2 cursor-pointer px-3" onMouseOver={() => setHover(true)} onMouseOut={() => setHover(false)} 
             onClick={props.closeEditor}
             whileTap={{scale: 0.8}}
+            style={checkInitial(props.initial)}
         >
             <motion.svg width="20" height="20" viewBox="0 0 5.75 5.75" stroke="#ec4899" strokeWidth="1" strokeLinecap="round" fill="none">
                 <motion.line 

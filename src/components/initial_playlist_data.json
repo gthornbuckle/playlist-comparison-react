@@ -1,0 +1,30 @@
+{
+    "id": "initialplaylist",
+    "name": "No Playlists",
+    "tracks": {
+        "items": [
+            {
+                "track": {
+                    "album": {
+                        "images": [
+                            {
+                                "url": ""
+                            }
+                        ]
+                    },
+                    "artists": [
+                        {
+                            "name": ""
+                        }
+                    ],
+                    "duration_ms": 0,
+                    "external_urls": {
+                        "spotify": ""
+                    },
+                    "id": "initialtrack",
+                    "name": "Add a playlist to display..."
+                }
+            }
+        ]
+    }
+}

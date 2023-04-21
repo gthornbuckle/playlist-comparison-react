@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 import PlaylistInfo from './PlaylistInfo';
 import PlaylistBlock from './PlaylistBlock';
 import ShuffleTheme from './Themes'
@@ -21,7 +21,9 @@ function PlaylistWrapper(props){
 	const [selectedBlock, setSelectedBlock] = useState(false);
 	const [blockData, setBlockData] = useState(expandedInfo);
 
-	console.log(props.playlistData);
+	if(props.playlistData === undefined){
+		return;
+	}
 
 	const displayExpandedInfo = data =>{
 		setBlockData(data);

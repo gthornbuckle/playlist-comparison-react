@@ -38,21 +38,25 @@ const getTracks = arr =>{
 }
 
 export default function HandleData(arr){
-    let playlistData = [];
+    if(arr.find(e => e.id === 'initialplaylist')){
+        console.log("Initial Data Found");
+    }else{
+        let playlistData = [];
 
-    arr.forEach(e =>{
-        
-        let playListObj = {
-            id: e.id,
-            name: e.name,
-            totalTracks: e.tracks.items.length,
-            totalDuration: playlistLength(e.tracks.items),
-            tracks: getTracks(e.tracks.items)
-        };
-
-        console.log(playListObj)
-        playlistData.push(playListObj)
-    })
-
-    return playlistData;
+        arr.forEach(e =>{
+            
+            let playListObj = {
+                id: e.id,
+                name: e.name,
+                totalTracks: e.tracks.items.length,
+                totalDuration: playlistLength(e.tracks.items),
+                tracks: getTracks(e.tracks.items)
+            };
+    
+            console.log(playListObj)
+            playlistData.push(playListObj)
+        })
+    
+        return playlistData;
+    }
 }

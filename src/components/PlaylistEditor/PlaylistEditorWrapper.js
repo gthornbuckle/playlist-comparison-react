@@ -29,6 +29,10 @@ const editor = {
 
 function PlaylistEditorWrapper(props){
     const [modalVisible, setModalVisible] = useState(false);
+
+    if(props.playlistData === undefined){
+		return;
+	}
     
     return(
         <motion.div>
