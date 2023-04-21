@@ -40,6 +40,7 @@ const getTracks = arr =>{
 export default function HandleData(arr){
     if(arr.find(e => e.id === 'initialplaylist')){
         console.log("Initial Data Found");
+        
     }else{
         let playlistData = [];
 

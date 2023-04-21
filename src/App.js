@@ -16,36 +16,41 @@ let playlistArray = [];
 // playlistArray.push(v1TestData);
 // playlistArray.push(v2TestData);
 
+// checkInitialData(playlists);
+
 function App() {
-  const [playlists, setPlaylists] = useState([initialData]);
-
-  useEffect(() =>{
-    if (localStorage.getItem('playlists' === null)){
-      localStorage.setItem('playlists', JSON.stringify(initialData));
+  const checkData = () =>{
+    if (localStorage.getItem('playlists') === null){
+      return [initialData];
     }else{
-      localStorage.setItem('playlists', JSON.stringify(playlists));
-    }
-
-  }, [playlists]);
-
-  const [adderVisible, setAdderVisible] = useState(true);
-  const [editorVisible, setEditorVisible] = useState(false);
-
-  const checkInitialData = arr =>{
-
-    if(arr.find(e => e.id === 'initialplaylist')){
-      setAdderVisible(true)
-      return true
-    } else{
-      return false;
+      return JSON.parse(localStorage.getItem('playlists'));
     }
   }
+
+  const [playlists, setPlaylists] = useState(checkData());
+
+  useEffect(() =>{
+    localStorage.setItem('playlists', JSON.stringify(playlists));
+
+  }, [playlists]);
 
   const updatePlaylistData = data =>{
     playlistArray.push(data);
     setPlaylists(playlistArray);
     setAdderVisible(false);
   }
+
+  const checkInitialData = arr =>{
+    console.log("Im working");
+    if(arr.find(e => e.id === 'initialplaylist')){
+      return true;
+    } else{
+      return false;
+    }
+  }
+
+  const [adderVisible, setAdderVisible] = useState(checkInitialData(playlists));
+  const [editorVisible, setEditorVisible] = useState(false);
 
   return (
     <div className="App">
@@ -56,7 +61,7 @@ function App() {
         {adderVisible &&(
         <AddPlaylistWrapper
         closeAdder={() =>{setAdderVisible(false)}}
-        initial={() =>{checkInitialData(playlists)}}
+        initial={playlists.find(e => e.id === 'initialplaylist') ? true : false}
         passPlaylistData={updatePlaylistData}/>
         )}
       </AnimatePresence>
