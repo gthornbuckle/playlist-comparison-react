@@ -11,7 +11,7 @@ import PlaylistEditorWrapper from './components/PlaylistEditor/PlaylistEditorWra
 import AddPlaylistWrapper from './components/AddPlaylistWrapper';
 import HandleData from './components/HandleData'
 
-let playlistArray = [];
+let playlistArray = JSON.parse(localStorage.getItem('playlists')) || [];
 
 // playlistArray.push(v1TestData);
 // playlistArray.push(v2TestData);

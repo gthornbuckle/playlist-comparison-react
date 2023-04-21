@@ -2,7 +2,7 @@ const playlistLength = arr =>{
     let totalDuration = 0;
 
     arr.forEach(e =>{
-        totalDuration += e.track.duration_ms;
+        totalDuration += e.track?.duration_ms;
     })
 
     return totalDuration;
@@ -21,8 +21,9 @@ const getTracks = arr =>{
         return tempArtists;
     }
 
-    arr.forEach(e =>{
+    arr.forEach((e, i) =>{
         let playlistTrackObj = {};
+        console.log(`Track number ${i + 1} is ok`);
 
         playlistTrackObj["id"] = e.track.id;
         playlistTrackObj["name"] = e.track.name;
@@ -51,7 +52,7 @@ export default function HandleData(arr){
                 name: e.name,
                 totalTracks: e.tracks.items.length,
                 totalDuration: playlistLength(e.tracks.items),
-                tracks: getTracks(e.tracks.items)
+                tracks: getTracks(e.tracks?.items)
             };
     
             console.log(playListObj)
