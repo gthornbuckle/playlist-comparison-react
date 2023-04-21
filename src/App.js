@@ -3,20 +3,12 @@ import { React, useState, useEffect}  from 'react'
 import { AnimatePresence } from 'framer-motion';
 import PlaylistWrapper from './components/PlaylistWrapper';
 import Menu from './components/Menu';
-// import v1TestData from './testdata/testdata_info_v1.json';
-// import v2TestData from './testdata/testdata_info_v2.json';
-// import track12TestData from './testdata/testdata_12tracks.json'
 import initialData from './components/initial_playlist_data.json'
 import PlaylistEditorWrapper from './components/PlaylistEditor/PlaylistEditorWrapper';
 import AddPlaylistWrapper from './components/AddPlaylistWrapper';
 import HandleData from './components/HandleData'
 
 let playlistArray = JSON.parse(localStorage.getItem('playlists')) || [];
-
-// playlistArray.push(v1TestData);
-// playlistArray.push(v2TestData);
-
-// checkInitialData(playlists);
 
 function App() {
   const checkData = () =>{
