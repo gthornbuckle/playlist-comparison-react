@@ -55,6 +55,7 @@ function App() {
   return (
     <div className="App">
       <Menu 
+      displayAdder={() => {setAdderVisible(true)}}
       displayEditor={() => {setEditorVisible(true)}}
       />
       <AnimatePresence>

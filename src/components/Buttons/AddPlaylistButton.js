@@ -43,11 +43,13 @@ const plusVariants ={
     }
 }
 
-function AddButton(){
+function AddButton(props){
     const [isHovered, setHover] = useState(false);
     
     return (
-        <div className="cursor-pointer px-3" onMouseOver={() => setHover(true)} onMouseOut={() => setHover(false)}>
+        <div className="cursor-pointer px-3" onMouseOver={() => setHover(true)} onMouseOut={() => setHover(false)}
+        onClick={props.displayAdder}
+        >
             <motion.p className="text-teal-500 text-2xl pl-11 justify-end"
             initial={false}
             animate={isHovered ? "hover" : "initial"}

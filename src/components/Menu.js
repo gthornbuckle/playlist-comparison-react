@@ -7,7 +7,9 @@ function Menu(props){
 
     return(
         <div className="fixed z-10 top-0 left-0 right-0 px-2 py-2 flex flex-row">
-            <AddButton/>  
+            <AddButton
+            displayAdder={props.displayAdder}
+            />  
             <EditButton 
             displayEditor={props.displayEditor}
             />
