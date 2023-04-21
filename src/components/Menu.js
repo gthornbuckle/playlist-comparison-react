@@ -6,7 +6,7 @@ import EditButton from "./Buttons/EditButton";
 function Menu(props){
 
     return(
-        <div className="fixed z-10 top-0 left-0 right-0 px-2 py-2 flex flex-row">
+        <div className="fixed z-10 top-0 left-0 right-0 px-2 py-2 flex flex-row bg-slate-800">
             <AddButton
             displayAdder={props.displayAdder}
             />  

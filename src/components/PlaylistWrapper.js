@@ -41,7 +41,7 @@ function PlaylistWrapper(props){
 				playlistName={playlist.name}
 				playlistDuration={playlist.totalDuration} 
 				playlistLength={playlist.totalTracks}  
-				playlistTheme={themes[i]}/>)}
+				playlistTheme={themes[i % themes.length]}/>)}
 			</div>
 			<div ref={scrollHorizontal} className=" basis-5/6 overflow-x-scroll overflow-y-hidden shrink-0" style={{transform: "rotateX(180deg)"}}>
 				<div className="text-teal-500 flex flex-row absolute z-10 bottom-0 pointer-events-none" style={{transform: "rotateX(180deg)"}}>
@@ -56,7 +56,7 @@ function PlaylistWrapper(props){
 					{props.playlistData.map((playlist, i) =><PlaylistBlock
 					key={playlist.id}
 					trackData={playlist.tracks} 
-					playlistTheme={themes[i]}
+					playlistTheme={themes[i % themes.length]}
 					expandinfo={displayExpandedInfo}/>)}
 				</div>
 				<div className="h-[24px]"></div>
