@@ -36,6 +36,7 @@ function App() {
 
   const updatePlaylistData = data =>{
     playlistArray.push(data);
+    localStorage.setItem('playlists', JSON.stringify(playlistArray));
     setPlaylists(playlistArray);
     setAdderVisible(false);
   }
