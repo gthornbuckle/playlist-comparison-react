@@ -63,7 +63,6 @@ export default function HandleData(arr){
                 tracks: getTracks(e.tracks?.items)
             };
     
-            console.log(playListObj)
             playlistData.push(playListObj)
         })
     

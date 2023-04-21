@@ -42,32 +42,44 @@ function App() {
     }
   }
 
+  const deletePlaylist = id =>{
+    console.log(`Playlist with id: ${id} will be deleted.`);
+    const deletedPlaylistArray = playlists.filter(e =>{
+      return e.id !== id;
+    });
+    setPlaylists(deletedPlaylistArray);
+  }
+
   const [adderVisible, setAdderVisible] = useState(checkInitialData(playlists));
   const [editorVisible, setEditorVisible] = useState(false);
 
   return (
     <div className="App">
       <Menu 
-      displayAdder={() => {setAdderVisible(true)}}
-      displayEditor={() => {setEditorVisible(true)}}
+        displayAdder={() => {setAdderVisible(true)}}
+        displayEditor={() => {setEditorVisible(true)}}
       />
       <AnimatePresence>
         {adderVisible &&(
         <AddPlaylistWrapper
-        closeAdder={() =>{setAdderVisible(false)}}
-        initial={playlists.find(e => e.id === 'initialplaylist') ? true : false}
-        passPlaylistData={updatePlaylistData}/>
+          closeAdder={() =>{setAdderVisible(false)}}
+          initial={playlists.find(e => e.id === 'initialplaylist') ? true : false}
+          passPlaylistData={updatePlaylistData}
+        />
         )}
       </AnimatePresence>
       <AnimatePresence>
         {editorVisible &&(
         <PlaylistEditorWrapper
-        playlistData={HandleData(playlists)}
-        closeEditor={() =>{setEditorVisible(false)}}/>
+          playlistData={HandleData(playlists)}
+          closeEditor={() =>{setEditorVisible(false)}}
+          handleDeletePlaylist={deletePlaylist}
+        />
         )}
       </AnimatePresence>
       <PlaylistWrapper
-      playlistData={HandleData(playlists)}/>
+        playlistData={HandleData(playlists)}
+      />
     </div>
   );
 }

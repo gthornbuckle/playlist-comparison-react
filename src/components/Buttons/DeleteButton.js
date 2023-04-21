@@ -30,7 +30,7 @@ function DeleteButton(props){
     
     return (
         <motion.div className="cursor-pointer px-3 relative" onMouseOver={() => setHover(true)} onMouseOut={() => setHover(false)}
-            onClick={props.delete}
+            onClick={() =>{props.deletePlaylist(props.playlistID)}}
         >
             <motion.svg className="absolute right-2 top-1" width="20" height="20" viewBox="0 0 18.76 6.03" stroke="#14b8a6" strokeWidth="1.5" strokeLinecap="round" fill="none"
                 initial={false}

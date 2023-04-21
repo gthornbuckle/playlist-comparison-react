@@ -53,8 +53,13 @@ function PlaylistEditorWrapper(props){
                         <div className="flex flex-row justify-between bg-slate-700 rounded-md">
                             <p className="p-2 text-left text-2xl text-white">{playlist.name}</p>
                             <div>
-                                <AddTrackButton addTrack={() =>{setModalVisible(true)}}/>
-                                <DeleteButton />
+                                <AddTrackButton 
+                                    addTrack={() =>{setModalVisible(true)}}
+                                />
+                                <DeleteButton 
+                                    deletePlaylist={props.handleDeletePlaylist}
+                                    playlistID={playlist.id} 
+                                />
                             </div>
                         </div>
                         <span className="py-2">

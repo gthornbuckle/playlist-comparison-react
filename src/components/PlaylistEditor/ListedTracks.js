@@ -13,7 +13,6 @@ const getTrackNames = arr =>{
 
 function ListedTracks(props){
   const [items, setItems] = useState(getTrackNames(props.tracks));
-  console.log(props.tracks)
 
   return (
     <Reorder.Group 
