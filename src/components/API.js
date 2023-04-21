@@ -1,16 +1,25 @@
 import axios from 'axios';
 import qs from 'qs';
 
-export function spotifySearch(query){
+export const spotifySearch = async query =>{
+  let config = {};
+  let spotifyToken = {};
+  
   if (localStorage.getItem('Spotifytoken') === null) {
-    getSpotifyToken();
+    console.log("No token found");
+    spotifyToken = await getSpotifyToken();
+    localStorage.setItem('Spotifytoken', JSON.stringify(spotifyToken));
+
   }else if (Date.now() > JSON.parse(localStorage.getItem('Spotifytoken')) + 3600000){
-    getSpotifyToken();
+    console.log("Token expired");
+    spotifyToken = await getSpotifyToken();
+    localStorage.setItem('Spotifytoken', JSON.stringify(spotifyToken));
+
+  }else{
+    spotifyToken = JSON.parse(localStorage.getItem('Spotifytoken'));
   }
 
-  let spotifyToken = JSON.parse(localStorage.getItem('Spotifytoken'));
-
-  let config = {
+  config = {
     method: 'get',
     maxBodyLength: Infinity,
     url: `https://api.spotify.com/v1/playlists/${query}`,
@@ -29,6 +38,7 @@ export function spotifySearch(query){
 }
 
 const getSpotifyToken = () =>{
+  console.log("Requesting new token...");
   let data = qs.stringify({
     'grant_type': 'client_credentials',
     'client_id': '3e4126f2bc784833ba1c34032f19e3f7',
@@ -45,9 +55,9 @@ const getSpotifyToken = () =>{
     data : data
   };
   
-  axios.request(config)
+  return axios.request(config)
   .then((response) => {
-    localStorage.setItem('Spotifytoken', JSON.stringify({token: response.data, created: Date.now()}));
+    return {token: response.data, created: Date.now()};
   })
   .catch((error) => {
     console.log(error);
