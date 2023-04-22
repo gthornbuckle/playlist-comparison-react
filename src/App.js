@@ -5,6 +5,7 @@ import PlaylistWrapper from './components/PlaylistWrapper';
 import Menu from './components/Menu';
 import initialData from './components/initial_playlist_data.json'
 import PlaylistEditorWrapper from './components/PlaylistEditor/PlaylistEditorWrapper';
+import PlaylistEditorWrapperDropdown from './components/PlaylistEditor/PlaylistEditorWrapperDropdown';
 import AddPlaylistWrapper from './components/AddPlaylistWrapper';
 import { HandleData, HandleTrack } from './components/HandleData'
 
@@ -74,7 +75,7 @@ function App() {
       </AnimatePresence>
       <AnimatePresence>
         {editorVisible &&(
-        <PlaylistEditorWrapper
+        <PlaylistEditorWrapperDropdown
           playlistData={HandleData(playlists)}
           closeEditor={() =>{setEditorVisible(false)}}
           handleDeletePlaylist={deletePlaylist}
