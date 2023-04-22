@@ -6,7 +6,7 @@ import Menu from './components/Menu';
 import initialData from './components/initial_playlist_data.json'
 import PlaylistEditorWrapper from './components/PlaylistEditor/PlaylistEditorWrapper';
 import AddPlaylistWrapper from './components/AddPlaylistWrapper';
-import HandleData from './components/HandleData'
+import { HandleData, HandleTrack } from './components/HandleData'
 
 let playlistArray = JSON.parse(localStorage.getItem('playlists')) || [];
 
@@ -50,8 +50,12 @@ function App() {
     setPlaylists(deletedPlaylistArray);
   }
 
+  const addManualTrack = obj =>{
+    console.log(HandleTrack(obj));
+  }
+
   const [adderVisible, setAdderVisible] = useState(checkInitialData(playlists));
-  const [editorVisible, setEditorVisible] = useState(false);
+  const [editorVisible, setEditorVisible] = useState(true);
 
   return (
     <div className="App">
@@ -74,6 +78,7 @@ function App() {
           playlistData={HandleData(playlists)}
           closeEditor={() =>{setEditorVisible(false)}}
           handleDeletePlaylist={deletePlaylist}
+          handleAddTrack={addManualTrack}
         />
         )}
       </AnimatePresence>

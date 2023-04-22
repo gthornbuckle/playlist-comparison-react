@@ -55,6 +55,7 @@ function PlaylistEditorWrapper(props){
                             <div>
                                 <AddTrackButton 
                                     addTrack={() =>{setModalVisible(true)}}
+                                    playlistID={playlist.id}
                                 />
                                 <DeleteButton 
                                     deletePlaylist={props.handleDeletePlaylist}
@@ -78,7 +79,9 @@ function PlaylistEditorWrapper(props){
         <AnimatePresence>
             {modalVisible &&(
             <AddTrackModal
-            closeModal={() =>{setModalVisible(false)}}/>
+                closeModal={() =>{setModalVisible(false)}}
+                addTrack={props.handleAddTrack}
+            />
             )}
         </AnimatePresence>
         <motion.div 

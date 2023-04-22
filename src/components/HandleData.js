@@ -46,7 +46,26 @@ const getTracks = arr =>{
     return tempPlaylist;
 }
 
-export default function HandleData(arr){
+const generateTrackID = () =>{
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    let id = "";
+    let i = 0;
+
+    while(i < 8){
+        id += characters.charAt(Math.floor(Math.random() * characters.length));
+        i+=1;
+    }
+    return id;
+}
+
+const formatDuration = (min, sec) =>{
+    let minToMs = parseInt(min);
+    let secToMs = parseInt(sec);
+
+    return (minToMs * 60000) + (secToMs * 1000);
+}
+
+export function HandleData(arr){
     if(arr.find(e => e.id === 'initialplaylist')){
         console.log("Initial Data Found");
         
@@ -68,4 +87,17 @@ export default function HandleData(arr){
     
         return playlistData;
     }
+}
+
+export function HandleTrack(obj){
+    let trackObj = {};
+
+    trackObj["id"] = `man-${generateTrackID()}`;
+    trackObj["name"] = obj.name;
+    trackObj["duration"] = formatDuration(obj.durationMin, obj.durationSec);
+    trackObj["artistArr"] = obj.artist;
+    trackObj["artwork"] = obj.artwork;
+    trackObj["url"] = obj.url;
+
+    console.log(trackObj);
 }

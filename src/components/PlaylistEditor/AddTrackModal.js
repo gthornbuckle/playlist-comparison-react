@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useState, useEffect } from "react";
 import { motion } from 'framer-motion';
 import CloseButton from "../Buttons/CloseButton";
 
@@ -27,8 +27,27 @@ const modal = {
         opacity: 0
     }
 }
+
+const initialValues ={
+    name: "",
+    durationMin: "",
+    durationSec:"",
+    artist: "",
+    artwork: "",
+    url: ""
+}
+
 function AddTrackModal(props){
-    
+    const [userInput, setUserInput] = useState(initialValues);
+
+    const handleInputChange = e =>{
+        const {name, value} = e.target;
+        setUserInput({
+            ...userInput,
+            [name]: value,
+        });
+    }   
+
     return(
         <motion.div>
         <div className="fixed z-40 w-full h-full flex items-center justify-center">
@@ -46,7 +65,10 @@ function AddTrackModal(props){
                         <input className={inputStyle}
                             placeholder="Enter track name..." 
                             type="text" 
-                            name="trackname"
+                            name="name"
+                            label="Track Name"
+                            value={userInput.name}
+                            onChange={handleInputChange}
                         >
                         </input>
                         <span className="flex flex-row items-center">
@@ -54,8 +76,11 @@ function AddTrackModal(props){
                                 style={{width: "4rem", textAlign: "right"}}
                                 placeholder="0" 
                                 type="text" 
-                                maxlength="3"
-                                name="trackmins"
+                                maxLength="3"
+                                name="durationMin"
+                                label="Duration Minutes"
+                                value={userInput.durationMin} 
+                                onChange={handleInputChange}
                             >
                             </input>
                             <p className="px-2 pt-3 text-white text-2xl text-center self-center">:</p>
@@ -63,8 +88,11 @@ function AddTrackModal(props){
                                 style={{width: "6rem"}}
                                 placeholder="00" 
                                 type="text"
-                                maxlength="2"
-                                name="tracksecs"
+                                maxLength="2"
+                                name="durationSec"
+                                label="Duration Seconds"
+                                value={userInput.durationSec} 
+                                onChange={handleInputChange}
                             >
                             </input>
                         </span>
@@ -72,24 +100,34 @@ function AddTrackModal(props){
                     <input className={inputStyle}
                         placeholder="Enter artist..." 
                         type="text"
-                        name="trackartist"
+                        name="artist"
+                        label="Track Artist"
+                        value={userInput.artist} 
+                        onChange={handleInputChange}
                     >
                     </input>
                     <input className={inputStyle}
                         placeholder="Enter artwork url... (optional)" 
                         type="text"
-                        name="trackartwork"
+                        name="artwork"
+                        label="Track Artwork URL"
+                        value={userInput.artwork} 
+                        onChange={handleInputChange}
                     >
                     </input>
                     <input className={inputStyle}
                         placeholder="Enter track link... (optional)" 
                         type="text"
-                        name="trackurl"
+                        name="url"
+                        label="External Link to Track"
+                        value={userInput.url} 
+                        onChange={handleInputChange}
                     >
                     </input>
                     <motion.button className="p-2 mt-4 w-1/6 text-white bg-teal-500 text-lg text-center self-end"
                         whileHover={{backgroundColor: "#ec4899"}}
                         whileTap={{scale: 0.8}}
+                        onClick={() =>{props.addTrack(userInput)}}
                     >Add</motion.button>
                 </span>
             </motion.div>
