@@ -27,6 +27,9 @@ function App() {
   }, [playlists]);
 
   const updatePlaylistData = data =>{
+    if(playlistArray.find(e => e.id === 'initialplaylist')){
+      playlistArray.splice(0, 1);
+    }
     playlistArray.push(HandleData(data));
     setPlaylists(playlistArray);
     setAdderVisible(false);
@@ -74,7 +77,7 @@ function App() {
   }
 
   const [adderVisible, setAdderVisible] = useState(checkInitialData(playlists));
-  const [editorVisible, setEditorVisible] = useState(true);
+  const [editorVisible, setEditorVisible] = useState(false);
 
   return (
     <div className="App">
