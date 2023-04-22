@@ -9,7 +9,7 @@ function ButtonMenu(props){
     return(
         <div className="basis-1/5 pl-2 flex flex-row items-center">
             <AddTrackButton
-            displayAdder={props.displayAdder}
+                addTrack={props.displayAdder}
             />  
             <DeleteButton
             displayEditor={props.displayEditor}

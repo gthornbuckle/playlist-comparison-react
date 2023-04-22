@@ -4,7 +4,6 @@ import { AnimatePresence } from 'framer-motion';
 import PlaylistWrapper from './components/PlaylistWrapper';
 import Menu from './components/Menu';
 import initialData from './components/initial_playlist_data.json'
-import PlaylistEditorWrapper from './components/PlaylistEditor/PlaylistEditorWrapper';
 import PlaylistEditorWrapperDropdown from './components/PlaylistEditor/PlaylistEditorWrapperDropdown';
 import AddPlaylistWrapper from './components/AddPlaylistWrapper';
 import { HandleData, HandleTrack } from './components/HandleData'
@@ -28,8 +27,7 @@ function App() {
   }, [playlists]);
 
   const updatePlaylistData = data =>{
-    playlistArray.push(data);
-    localStorage.setItem('playlists', JSON.stringify(playlistArray));
+    playlistArray.push(HandleData(data));
     setPlaylists(playlistArray);
     setAdderVisible(false);
   }
@@ -37,8 +35,10 @@ function App() {
   const checkInitialData = arr =>{
     console.log("Im working");
     if(arr.find(e => e.id === 'initialplaylist')){
+      console.log("Initial = true");
       return true;
     } else{
+      console.log("Initial = false");
       return false;
     }
   }
@@ -51,12 +51,30 @@ function App() {
     setPlaylists(deletedPlaylistArray);
   }
 
-  const addManualTrack = obj =>{
-    console.log(HandleTrack(obj));
+  const addManualTrack = (obj, id) =>{
+    const trackIndex = obj.trackLocation - 1;
+    const newTrack = HandleTrack(obj);
+
+    let newPlaylists = [];
+    const selectedPlaylist = playlists.filter(e =>{
+      return e.id === id;
+    });
+    const remainingPlaylists = playlists.filter(e =>{
+      return e.id !== id;
+    });
+
+    remainingPlaylists.forEach(e =>{
+      newPlaylists.push(e);
+    });
+    
+    selectedPlaylist[0].tracks.splice(trackIndex, 0, newTrack);
+    newPlaylists.push(selectedPlaylist[0]);
+
+    setPlaylists(newPlaylists);
   }
 
   const [adderVisible, setAdderVisible] = useState(checkInitialData(playlists));
-  const [editorVisible, setEditorVisible] = useState(false);
+  const [editorVisible, setEditorVisible] = useState(true);
 
   return (
     <div className="App">
@@ -76,7 +94,7 @@ function App() {
       <AnimatePresence>
         {editorVisible &&(
         <PlaylistEditorWrapperDropdown
-          playlistData={HandleData(playlists)}
+          playlistData={playlists}
           closeEditor={() =>{setEditorVisible(false)}}
           handleDeletePlaylist={deletePlaylist}
           handleAddTrack={addManualTrack}
@@ -84,7 +102,7 @@ function App() {
         )}
       </AnimatePresence>
       <PlaylistWrapper
-        playlistData={HandleData(playlists)}
+        playlistData={playlists}
       />
     </div>
   );

@@ -65,28 +65,18 @@ const formatDuration = (min, sec) =>{
     return (minToMs * 60000) + (secToMs * 1000);
 }
 
-export function HandleData(arr){
-    if(arr.find(e => e.id === 'initialplaylist')){
-        console.log("Initial Data Found");
-        
-    }else{
-        let playlistData = [];
+export function HandleData(obj){ 
 
-        arr.forEach(e =>{
-            
-            let playListObj = {
-                id: e.id,
-                name: e.name,
-                totalTracks: e.tracks.items.length,
-                totalDuration: playlistLength(e.tracks.items),
-                tracks: getTracks(e.tracks?.items)
-            };
+    let playListObj = {
+        id: obj.id,
+        name: obj.name,
+        totalTracks: obj.tracks.items.length,
+        totalDuration: playlistLength(obj.tracks.items),
+        tracks: getTracks(obj.tracks?.items)
+    };
+
+    return playListObj;
     
-            playlistData.push(playListObj)
-        })
-    
-        return playlistData;
-    }
 }
 
 export function HandleTrack(obj){
@@ -95,9 +85,9 @@ export function HandleTrack(obj){
     trackObj["id"] = `man-${generateTrackID()}`;
     trackObj["name"] = obj.name;
     trackObj["duration"] = formatDuration(obj.durationMin, obj.durationSec);
-    trackObj["artistArr"] = obj.artist;
+    trackObj["artistArr"] = [obj.artist];
     trackObj["artwork"] = obj.artwork;
     trackObj["url"] = obj.url;
 
-    console.log(trackObj);
+    return trackObj;
 }

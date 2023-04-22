@@ -34,7 +34,8 @@ const initialValues ={
     durationSec:"",
     artist: "",
     artwork: "",
-    url: ""
+    url: "",
+    trackLocation: ""
 }
 
 function AddTrackModal(props){
@@ -46,8 +47,8 @@ function AddTrackModal(props){
             ...userInput,
             [name]: value,
         });
-    }   
-
+    }
+    
     return(
         <motion.div>
         <div className="fixed z-40 w-full h-full flex items-center justify-center">
@@ -91,7 +92,7 @@ function AddTrackModal(props){
                                 maxLength="2"
                                 name="durationSec"
                                 label="Duration Seconds"
-                                value={userInput.durationSec} 
+                                value={userInput.durationSec}
                                 onChange={handleInputChange}
                             >
                             </input>
@@ -124,10 +125,19 @@ function AddTrackModal(props){
                         onChange={handleInputChange}
                     >
                     </input>
-                    <motion.button className="p-2 mt-4 w-1/6 text-white bg-teal-500 text-lg text-center self-end"
+                    <input className={inputStyle}
+                        placeholder="Enter track number... (temporary)" 
+                        type="text"
+                        name="trackLocation"
+                        label="External Link to Track"
+                        value={userInput.trackLocation} 
+                        onChange={handleInputChange}
+                    >
+                    </input>
+                    <motion.button className="p-2 mt-4 w-1/6 text-white bg-teal-500 text-lg text-center self-end rounded-md"
                         whileHover={{backgroundColor: "#ec4899"}}
                         whileTap={{scale: 0.8}}
-                        onClick={() =>{props.addTrack(userInput)}}
+                        onClick={() =>{props.addTrack(userInput, props.currentPlaylist); props.closeModal()}}
                     >Add</motion.button>
                 </span>
             </motion.div>

@@ -21,7 +21,7 @@ function PlaylistWrapper(props){
 	const [selectedBlock, setSelectedBlock] = useState(false);
 	const [blockData, setBlockData] = useState(expandedInfo);
 
-	if(props.playlistData === undefined){
+	if(props.playlistData.find(e => e.id === 'initialplaylist')){
 		return;
 	}
 

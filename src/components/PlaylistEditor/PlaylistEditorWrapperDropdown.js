@@ -38,7 +38,7 @@ function PlaylistEditorWrapperDropdown(props){
         setSelectedPlaylist(selected[0]);
     }
 
-    if(props.playlistData === undefined){
+    if(props.playlistData.find(e => e.id === 'initialplaylist')){
 		return;
 	}
 
@@ -66,7 +66,9 @@ function PlaylistEditorWrapperDropdown(props){
                         handleChange={handleChange}
                     />
                     <div>
-                        <ButtonMenu/>
+                        <ButtonMenu
+                            displayAdder={() =>{setModalVisible(true)}}
+                        />
                     </div>
                 </span>
                 <span className="pt-2">
@@ -82,6 +84,7 @@ function PlaylistEditorWrapperDropdown(props){
             <AddTrackModal
                 closeModal={() =>{setModalVisible(false)}}
                 addTrack={props.handleAddTrack}
+                currentPlaylist={selectedPlaylist.id}
             />
             )}
         </AnimatePresence>
