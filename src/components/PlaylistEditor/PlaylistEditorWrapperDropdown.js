@@ -46,7 +46,7 @@ function PlaylistEditorWrapperDropdown(props){
         <motion.div>
         <div className="fixed z-20 w-full h-full flex items-center justify-center">
             <motion.div 
-                className="w-10/12 h-3/4 px-4 py-4 bg-slate-800 drop-shadow-lg overflow-y-auto"
+                className="w-10/12 h-fit shrink px-4 py-4 bg-slate-800 drop-shadow-lg overflow-y-none"
                 variants={editor}
                 initial={"hidden"}
                 animate={"visible"}
@@ -58,7 +58,7 @@ function PlaylistEditorWrapperDropdown(props){
                     Edit Playlists
                 </h1>
                 <p className=" px-1 py-2 text-slate-400 text-lg text-left italic">
-                    Select playlist, add or delete tracks, drag tracks to change track order
+                    Select a playlist, add or delete tracks and drag tracks to change order
                 </p>
                 <span className="flex flex-row items-center justify-center">
                     <DropdownMenu 

@@ -30,7 +30,7 @@ function DropdownMenu(props){
                         position="popper" 
                         side="bottom" 
                         align="start" 
-                        className="z-40 h-fit overflow-hidden bg-slate-600 focus:outline-none rounded-b-md"
+                        className="z-40 h-fit overflow-hidden bg-slate-500 focus:outline-none rounded-b-md"
                         style={{width: "var(--radix-select-trigger-width)"}}
                         asChild
                     >
@@ -41,7 +41,8 @@ function DropdownMenu(props){
                             <Select.Viewport>
                                 <Select.Group>
                                 {props.playlistData.map(playlist => <Select.Item 
-                                        className="p-6 font-md text-slate-300 flex items-center justify-start h-2 relative select-none focus:outline-none focus:bg-slate-500" 
+                                        className="p-6 text-xl text-slate-200 flex items-center justify-start h-2 relative select-none 
+                                        focus:outline-none focus:bg-slate-400 focus:text-pink-500" 
                                         key={playlist.id}
                                         value={playlist.name}>
                                             <Select.ItemText>{playlist.name}</Select.ItemText>
