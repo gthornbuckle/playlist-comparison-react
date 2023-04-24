@@ -55,7 +55,8 @@ function App() {
   }
 
   const addManualTrack = (obj, id) =>{
-    const trackIndex = obj.trackLocation - 1;
+    const trackIndex = obj.trackNumber - 1;
+    console.log(id);
     const newTrack = HandleTrack(obj);
 
     let newPlaylists = [];
