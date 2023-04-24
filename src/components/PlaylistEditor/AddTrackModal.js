@@ -52,13 +52,13 @@ function AddTrackModal(props){
     }
 
     const formValidation = input =>{
-        if(input.trackNumber === ""){
+        if (isNaN(parseFloat(input.trackNumber))){
             setInvalidInput("track number");
             setInvalidWarning(true);
         }else if (input.name === ""){
             setInvalidInput("track name");
             setInvalidWarning(true);
-        }else if (input.durationMin === "" || input.durationSec === ""){
+        }else if (isNaN(parseFloat(input.durationMin)) || isNaN(parseFloat(input.durationSec))){
             setInvalidInput("track duration");
             setInvalidWarning(true);
         }else if (input.artist === ""){
@@ -87,7 +87,8 @@ function AddTrackModal(props){
                         <input className={inputStyle}
                             style={{width: "4rem"}}
                             placeholder="No." 
-                            type="text" 
+                            type="text"
+                            maxLength="4"
                             name="trackNumber"
                             label="Track Posistion in Playlist"
                             value={userInput.trackNumber} 
