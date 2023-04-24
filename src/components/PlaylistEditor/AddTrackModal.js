@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import CloseButton from "../Buttons/CloseButton";
 
 const inputStyle = `mt-4 placeholder:text-slate-400 block
@@ -35,11 +35,13 @@ const initialValues ={
     artist: "",
     artwork: "",
     url: "",
-    trackLocation: ""
+    trackNumber: ""
 }
 
 function AddTrackModal(props){
     const [userInput, setUserInput] = useState(initialValues);
+    const [invalidWarning, setInvalidWarning] = useState(false);
+    const [invalidInput, setInvalidInput] = useState("");
 
     const handleInputChange = e =>{
         const {name, value} = e.target;
@@ -47,6 +49,25 @@ function AddTrackModal(props){
             ...userInput,
             [name]: value,
         });
+    }
+
+    const formValidation = input =>{
+        if(input.trackNumber === ""){
+            setInvalidInput("track number");
+            setInvalidWarning(true);
+        }else if (input.name === ""){
+            setInvalidInput("track name");
+            setInvalidWarning(true);
+        }else if (input.durationMin === "" || input.durationSec === ""){
+            setInvalidInput("track duration");
+            setInvalidWarning(true);
+        }else if (input.artist === ""){
+            setInvalidInput("artist");
+            setInvalidWarning(true);
+        }else{
+            props.addTrack(userInput, props.currentPlaylist);
+            props.closeModal();
+        }
     }
     
     return(
@@ -63,6 +84,16 @@ function AddTrackModal(props){
                 <h2 className=" px-1 text-teal-500 text-3xl text-left">Add Track</h2>
                 <span className="py-1 flex flex-col">
                     <span className="flex flex-row space-x-4">
+                        <input className={inputStyle}
+                            style={{width: "4rem"}}
+                            placeholder="No." 
+                            type="text" 
+                            name="trackNumber"
+                            label="Track Posistion in Playlist"
+                            value={userInput.trackNumber} 
+                            onChange={handleInputChange}
+                        >
+                        </input>
                         <input className={inputStyle}
                             placeholder="Enter track name..." 
                             type="text" 
@@ -84,7 +115,7 @@ function AddTrackModal(props){
                                 onChange={handleInputChange}
                             >
                             </input>
-                            <p className="px-2 pt-3 text-white text-2xl text-center self-center">:</p>
+                            <label className="px-2 pt-3 text-white text-2xl text-center self-center">:</label>
                             <input className={inputStyle}
                                 style={{width: "6rem"}}
                                 placeholder="00" 
@@ -125,20 +156,31 @@ function AddTrackModal(props){
                         onChange={handleInputChange}
                     >
                     </input>
-                    <input className={inputStyle}
-                        placeholder="Enter track number... (temporary)" 
-                        type="text"
-                        name="trackLocation"
-                        label="External Link to Track"
-                        value={userInput.trackLocation} 
-                        onChange={handleInputChange}
-                    >
-                    </input>
-                    <motion.button className="p-2 mt-4 w-1/6 text-white bg-teal-500 text-lg text-center self-end rounded-md"
-                        whileHover={{backgroundColor: "#ec4899"}}
-                        whileTap={{scale: 0.8}}
-                        onClick={() =>{props.addTrack(userInput, props.currentPlaylist); props.closeModal()}}
-                    >Add</motion.button>
+                    <span className="flex flex-row items-center justify-end">
+                            {invalidWarning &&(
+                                <motion.p className="text-pink-500 text-lg absolute left-4 bottom-7"
+                                    key={invalidInput}
+                                    initial={{opacity: 0}}
+                                    animate={{opacity: 1, x: [0, 5, 0, -5, 0],}}
+                                    exit={{opacity: 0}}
+                                    transition={{
+                                        x:{
+                                        duration: 0.3,
+                                        repeat: 2,
+                                        ease: "linear"
+                                        }
+                                    }}
+                                >
+                                    Please enter a valid {invalidInput}
+                                </motion.p>
+                            )}
+                        <motion.button className="p-2 mt-4 w-1/6 text-white bg-teal-500 text-lg text-center self-end rounded-md"
+                            whileHover={{backgroundColor: "#ec4899"}}
+                            whileTap={{scale: 0.8}}
+                            // onClick={() =>{props.addTrack(userInput, props.currentPlaylist); props.closeModal()}}
+                            onClick={() =>{formValidation(userInput)}}
+                        >Add</motion.button>
+                    </span>
                 </span>
             </motion.div>
         </div>
