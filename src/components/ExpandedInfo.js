@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import format from 'format-duration';
 import Animatedlink from './Buttons/AnimatedLink';
 import HideIcon from './Buttons/HideIcon';
+import defaultart from '../defaultartwork.png'
 
 const container = {
     visible: {
@@ -29,10 +30,17 @@ const children = {
 }
 
 function ExpandedInfo(props){
+    const getImgUrl = url =>{
+        if(url === ""){
+            return defaultart;
+        }else{
+            return url;
+        }
+    }
 
     return(
         <motion.div className="fixed bottom-10 left-10 h-96 w-96 bg-pink-500 drop-shadow-lg bg-contain flex items-end"
-            style={{backgroundImage: `url(${props.data[4]})`}}
+            style={{backgroundImage: `url(${getImgUrl(props.data[4])})`}}
             variants={container}
             initial={"hidden"}
             animate={"visible"}

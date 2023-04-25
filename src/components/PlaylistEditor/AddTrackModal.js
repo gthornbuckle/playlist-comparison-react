@@ -65,6 +65,9 @@ function AddTrackModal(props){
             setInvalidInput("artist");
             setInvalidWarning(true);
         }else{
+            if(input.artwork === ""){
+                input.artwork = "https://drive.google.com/file/d/1sfOFSViwm5oHTlghbPA34LCFU3malKYe/preview"
+            }
             props.addTrack(userInput, props.currentPlaylist);
             props.closeModal();
         }
