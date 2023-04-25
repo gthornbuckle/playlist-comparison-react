@@ -73,7 +73,7 @@ function PlaylistEditorWrapperDropdown(props){
                 </span>
                 <span className="pt-2">
                     <TrackList
-                        key={selectedPlaylist.id}
+                        key={selectedPlaylist.tracks}
                         tracks={selectedPlaylist.tracks}
                     />
                 </span>
