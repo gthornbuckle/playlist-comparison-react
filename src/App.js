@@ -6,7 +6,7 @@ import Menu from './components/Menu';
 import initialData from './components/initial_playlist_data.json'
 import PlaylistEditorWrapperDropdown from './components/PlaylistEditor/PlaylistEditorWrapperDropdown';
 import AddPlaylistWrapper from './components/AddPlaylistWrapper';
-import { HandleData, HandleTrack } from './components/HandleData'
+import { HandleData, HandleTrack, NewTrackAdded } from './components/HandleData'
 
 let playlistArray = JSON.parse(localStorage.getItem('playlists')) || [];
 
@@ -60,7 +60,6 @@ function App() {
 
     let newPlaylists = [];
     const playlistIndex = playlists.findIndex(i => i.id === id);
-    console.log(playlistIndex);
     const selectedPlaylist = playlists.filter(e =>{
       return e.id === id;
     });
@@ -73,7 +72,7 @@ function App() {
     });
     
     selectedPlaylist[0].tracks.splice(trackIndex, 0, newTrack);
-    newPlaylists.splice(playlistIndex, 0, selectedPlaylist[0]);
+    newPlaylists.splice(playlistIndex, 0, NewTrackAdded(selectedPlaylist[0]));
 
     setPlaylists(newPlaylists);
   }

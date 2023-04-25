@@ -1,14 +1,21 @@
-const playlistLength = arr =>{
+const playlistLength = (type, arr) =>{
     let totalDuration = 0;
 
-    arr.forEach((e, i) =>{
-        if(e.track === null){
-            console.log(`Track number ${i + 1} is null`);
-            return;
-        }else {
-        totalDuration += e.track.duration_ms;
-        }
-    })
+    switch(type){
+        case "spotify":
+            arr.forEach(e =>{
+                if(e.track === null){
+                    return;
+                }else {
+                totalDuration += e.track.duration_ms;
+                }
+            })
+        case "manualtrack":
+            arr.forEach(e =>{
+                totalDuration += e.duration;
+            })
+    }
+
 
     return totalDuration;
 }
@@ -71,7 +78,7 @@ export function HandleData(obj){
         id: obj.id,
         name: obj.name,
         totalTracks: obj.tracks.items.length,
-        totalDuration: playlistLength(obj.tracks.items),
+        totalDuration: playlistLength("spotify", obj.tracks.items),
         tracks: getTracks(obj.tracks?.items)
     };
 
@@ -90,4 +97,11 @@ export function HandleTrack(obj){
     trackObj["url"] = obj.url;
 
     return trackObj;
+}
+
+export function NewTrackAdded(obj){
+    obj.totalTracks = obj.tracks.length;
+    obj.totalDuration = playlistLength("manualtrack", obj.tracks);
+
+    return obj;
 }
