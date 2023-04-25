@@ -30,17 +30,10 @@ const children = {
 }
 
 function ExpandedInfo(props){
-    const getImgUrl = url =>{
-        if(url === ""){
-            return defaultart;
-        }else{
-            return url;
-        }
-    }
 
     return(
         <motion.div className="fixed bottom-10 left-10 h-96 w-96 bg-pink-500 drop-shadow-lg bg-contain flex items-end"
-            style={{backgroundImage: `url(${getImgUrl(props.data[4])})`}}
+            style={{backgroundImage: `url(${defaultart})`}}
             variants={container}
             initial={"hidden"}
             animate={"visible"}
@@ -54,6 +47,10 @@ function ExpandedInfo(props){
                     <motion.p className="text-xl" variants={children}>{format(props.data[2])}</motion.p>
                     <Animatedlink url={props.data[3]} variants={children}/>
                 </motion.div>
+                <motion.div className="fixed -z-10 h-96 w-96 bg-contain"
+                    style={{backgroundImage: `url(${props.data[4]})`}}
+                >
+                    </motion.div>
 		</motion.div>
     );
 }
