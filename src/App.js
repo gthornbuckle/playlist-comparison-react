@@ -56,10 +56,11 @@ function App() {
 
   const addManualTrack = (obj, id) =>{
     const trackIndex = obj.trackNumber - 1;
-    console.log(id);
     const newTrack = HandleTrack(obj);
 
     let newPlaylists = [];
+    const playlistIndex = playlists.findIndex(i => i.id === id);
+    console.log(playlistIndex);
     const selectedPlaylist = playlists.filter(e =>{
       return e.id === id;
     });
@@ -72,7 +73,7 @@ function App() {
     });
     
     selectedPlaylist[0].tracks.splice(trackIndex, 0, newTrack);
-    newPlaylists.push(selectedPlaylist[0]);
+    newPlaylists.splice(playlistIndex, 0, selectedPlaylist[0]);
 
     setPlaylists(newPlaylists);
   }
