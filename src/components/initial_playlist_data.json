@@ -1,30 +1,16 @@
 {
     "id": "initialplaylist",
-    "name": "No Playlists",
-    "tracks": {
-        "items": [
-            {
-                "track": {
-                    "album": {
-                        "images": [
-                            {
-                                "url": ""
-                            }
-                        ]
-                    },
-                    "artists": [
-                        {
-                            "name": ""
-                        }
-                    ],
-                    "duration_ms": 0,
-                    "external_urls": {
-                        "spotify": ""
-                    },
-                    "id": "initialtrack",
-                    "name": "Add a playlist to display..."
-                }
-            }
-        ]
-    }
+    "name": "Initial Playlist",
+    "totalDuration": 0,
+    "totalTracks": 1,
+    "tracks": [
+        {
+            "artistArr": ["artist"],
+            "artwork": "",
+            "duration": 0,
+            "id": "trackId",
+            "name": "track",
+            "url": ""
+        }
+    ]
 }

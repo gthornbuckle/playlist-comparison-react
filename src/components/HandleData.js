@@ -1,22 +1,19 @@
 const playlistLength = (type, arr) =>{
     let totalDuration = 0;
-
-    switch(type){
-        case "spotify":
-            arr.forEach(e =>{
-                if(e.track === null){
-                    return;
-                }else {
-                totalDuration += e.track.duration_ms;
-                }
-            })
-        case "manualtrack":
-            arr.forEach(e =>{
-                totalDuration += e.duration;
-            })
+    console.log(type);
+    if(type === "spotify"){
+        arr.forEach(e =>{
+            if(e.track === null){
+                return;
+            }else {
+            totalDuration += e.track.duration_ms;
+            }
+        })
+    }else if(type === "manualtrack"){
+        arr.forEach(e =>{
+            totalDuration += e.duration;
+        })
     }
-
-
     return totalDuration;
 }
 

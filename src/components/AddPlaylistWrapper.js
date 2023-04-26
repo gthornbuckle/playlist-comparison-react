@@ -77,7 +77,7 @@ function AddPlaylistWrapper(props){
                 >
                 </input>
                 <div className="px-2 flex flex-row justify-end">
-                    <motion.button className="p-2 mt-4 text-white bg-teal-500 text-lg text-center"
+                    <motion.button className="p-2 mt-4 text-white bg-teal-500 text-lg text-center rounded-md"
                         whileHover={{backgroundColor: "#ec4899"}}
                         whileTap={{scale: 0.8}}
                         onClick={() =>{getPlaylist(userInput)}}

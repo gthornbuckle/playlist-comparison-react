@@ -8,8 +8,6 @@ import PlaylistEditorWrapperDropdown from './components/PlaylistEditor/PlaylistE
 import AddPlaylistWrapper from './components/AddPlaylistWrapper';
 import { HandleData, HandleTrack, NewTrackAdded } from './components/HandleData'
 
-let playlistArray = JSON.parse(localStorage.getItem('playlists')) || [];
-
 function App() {
   const checkData = () =>{
     if (localStorage.getItem('playlists') === null){
@@ -27,7 +25,9 @@ function App() {
   }, [playlists]);
 
   const updatePlaylistData = data =>{
+    let playlistArray = JSON.parse(localStorage.getItem('playlists'))
     if(playlistArray.find(e => e.id === 'initialplaylist')){
+      console.log("Removing initial playlist data...");
       playlistArray.splice(0, 1);
     }
     playlistArray.push(HandleData(data));
@@ -36,17 +36,18 @@ function App() {
   }
 
   const checkInitialData = arr =>{
-    console.log("Im working");
     if(arr.find(e => e.id === 'initialplaylist')){
-      console.log("Initial = true");
       return true;
     } else{
-      console.log("Initial = false");
       return false;
     }
   }
 
   const deletePlaylist = id =>{
+    if(playlists.length === 1){
+      console.log("Anti crash measure");
+      return;
+    }
     console.log(`Playlist with id: ${id} will be deleted.`);
     const deletedPlaylistArray = playlists.filter(e =>{
       return e.id !== id;
@@ -78,7 +79,7 @@ function App() {
   }
 
   const [adderVisible, setAdderVisible] = useState(checkInitialData(playlists));
-  const [editorVisible, setEditorVisible] = useState(true);
+  const [editorVisible, setEditorVisible] = useState(false);
 
   return (
     <div className="App">
@@ -98,6 +99,7 @@ function App() {
       <AnimatePresence>
         {editorVisible &&(
         <PlaylistEditorWrapperDropdown
+          key={playlists}
           playlistData={playlists}
           closeEditor={() =>{setEditorVisible(false)}}
           handleDeletePlaylist={deletePlaylist}

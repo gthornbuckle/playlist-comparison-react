@@ -12,7 +12,7 @@ function ButtonMenu(props){
                 addTrack={props.displayAdder}
             />  
             <DeleteButton
-            displayEditor={props.displayEditor}
+                deleteModal={props.deleteModal}
             />
             <SaveButton/>
         </div>

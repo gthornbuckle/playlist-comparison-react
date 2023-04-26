@@ -5,6 +5,7 @@ import CloseButton from "../Buttons/CloseButton";
 import AddTrackModal from "./AddTrackModal";
 import DropdownMenu from "./DropdownMenu";
 import ButtonMenu from "./ButtonMenu";
+import ConfirmationModal from "./ConfirmationModal"
 
 const container = {
     visible: {
@@ -28,7 +29,8 @@ const editor = {
 }
 
 function PlaylistEditorWrapperDropdown(props){
-    const [modalVisible, setModalVisible] = useState(false);
+    const [addTrackModalVisible, setaddTrackModalVisible] = useState(false);
+    const [confirmationModalVisible, setconfirmationModalVisible] = useState(false);
     const [selectedPlaylist, setSelectedPlaylist] = useState(props.playlistData[0]);
 
     const handleChange = name =>{
@@ -67,7 +69,9 @@ function PlaylistEditorWrapperDropdown(props){
                     />
                     <div>
                         <ButtonMenu
-                            displayAdder={() =>{setModalVisible(true)}}
+                            displayAdder={() =>{setaddTrackModalVisible(true)}}
+                            deleteModal={() =>{setconfirmationModalVisible(true)}}
+                            currentPlaylist={selectedPlaylist}
                         />
                     </div>
                 </span>
@@ -80,11 +84,20 @@ function PlaylistEditorWrapperDropdown(props){
             </motion.div>
         </div>
         <AnimatePresence>
-            {modalVisible &&(
+            {addTrackModalVisible &&(
             <AddTrackModal
-                closeModal={() =>{setModalVisible(false)}}
+                closeModal={() =>{setaddTrackModalVisible(false)}}
                 addTrack={props.handleAddTrack}
                 currentPlaylist={selectedPlaylist.id}
+            />
+            )}
+        </AnimatePresence>
+        <AnimatePresence>
+            {confirmationModalVisible &&(
+            <ConfirmationModal
+                closeModal={() =>{setconfirmationModalVisible(false)}}
+                currentPlaylist={selectedPlaylist}
+                deletePlaylist={props.handleDeletePlaylist}
             />
             )}
         </AnimatePresence>

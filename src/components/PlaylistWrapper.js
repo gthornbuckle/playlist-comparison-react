@@ -10,8 +10,9 @@ const themes = ShuffleTheme();
 let expandedInfo = ['Song Name', 'Artist', 100000, 'url', 'artwork'];
 
 const getHourDividers = arr =>{
+	
     let playlistDurations = arr.filter(res => res.totalDuration).map(e => e.totalDuration / 3600000);
-
+	
     const hours = [...Array(Math.ceil(Math.max(...playlistDurations))+1).keys()].slice(1);
     return hours;
 }
