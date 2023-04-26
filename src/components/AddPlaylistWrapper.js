@@ -29,8 +29,34 @@ const editor = {
     }
 }
 
+const loadingContainer = {
+    animate: {
+        transition:{
+            staggerChildren: 0.1
+        }
+    }
+}
+
+const loadingChildren = {
+    initial: {
+        y: 0,
+        scale: 1
+    },
+    animate: {
+        y: [0, 5, 0, -5, 0],
+        scale: [1, 1.2, 1, 0.8, 1]
+    }
+}
+
+const loadingTransistion = {
+    duration: 0.5,
+    repeat: Infinity,
+    ease: "easeInOut"
+}
+
 function AddPlaylistWrapper(props){
     const [userInput, setUserInput] = useState("");
+    const [isLoading, setLoading] = useState(false);
 
     const getPlaylist = async query =>{
         if(query.includes('spotify')){
@@ -49,6 +75,7 @@ function AddPlaylistWrapper(props){
                 console.log(err);
             } finally {
                 props.passPlaylistData(responseData);
+                setLoading(false);
             }
         }
 
@@ -67,7 +94,7 @@ function AddPlaylistWrapper(props){
             >
                 <CloseButton closeEditor={props.closeAdder} initial={props.initial}/>
                 <h1 className=" px-1 text-teal-500 text-3xl text-left">Add Playlist</h1>
-                <p className=" px-1 text-slate-400 text-lg text-left italic">Enter valid playlist url</p>
+                <p className=" px-1 text-slate-400 text-lg text-left">Enter a valid Spotify playlist url.</p>
                 <input className={inputStyle}
                         placeholder="Enter playlist url..." 
                         type="text"
@@ -76,13 +103,37 @@ function AddPlaylistWrapper(props){
                         onChange={e => setUserInput(e.target.value)}
                 >
                 </input>
-                <div className="px-2 flex flex-row justify-end">
-                    <motion.button className="p-2 mt-4 text-white bg-teal-500 text-lg text-center rounded-md"
-                        whileHover={{backgroundColor: "#ec4899"}}
-                        whileTap={{scale: 0.8}}
-                        onClick={() =>{getPlaylist(userInput)}}
-                    >Add Playlist</motion.button>
+                {!isLoading &&(
+                    <div className="flex flex-row justify-end">
+                        <motion.button className="p-2 mt-4 w-36 text-white bg-teal-500 text-lg text-center rounded-md"
+                            whileHover={{backgroundColor: "#ec4899"}}
+                            whileTap={{scale: 0.8}}
+                            onClick={() =>{getPlaylist(userInput); setLoading(true)}}
+                        >Add Playlist</motion.button>
+                    </div>
+                )}
+                {isLoading &&(
+                <div className="flex flex-row items-center justify-end">
+                    <motion.div className="p-4 mt-4 w-36 flex flex-row items-center justify-center bg-teal-500 rounded-md"
+                        variants={loadingContainer}
+                        inital="inital"
+                        animate="animate"
+                    >
+                        <motion.span className="mx-1 block w-2 h-2 bg-white rounded-full"
+                            variants={loadingChildren}
+                            transition={loadingTransistion}
+                        ></motion.span>
+                        <motion.span className="mx-1 block w-2 h-2 bg-white rounded-full"
+                             variants={loadingChildren}
+                             transition={loadingTransistion}
+                        ></motion.span>
+                        <motion.span className="mx-1 block w-2 h-2 bg-white rounded-full"
+                            variants={loadingChildren}
+                            transition={loadingTransistion}
+                        ></motion.span>
+                    </motion.div>
                 </div>
+                )}
             </motion.div>
         </div>
         <motion.div 
