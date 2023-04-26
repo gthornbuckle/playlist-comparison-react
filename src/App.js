@@ -45,7 +45,9 @@ function App() {
 
   const deletePlaylist = id =>{
     if(playlists.length === 1){
-      console.log("Anti crash measure");
+      setPlaylists([initialData]);
+      setEditorVisible(false);
+      setAdderVisible(true);
       return;
     }
     console.log(`Playlist with id: ${id} will be deleted.`);
