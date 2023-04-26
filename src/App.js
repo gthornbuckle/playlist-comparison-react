@@ -7,6 +7,7 @@ import initialData from './components/initial_playlist_data.json'
 import PlaylistEditorWrapperDropdown from './components/PlaylistEditor/PlaylistEditorWrapperDropdown';
 import AddPlaylistWrapper from './components/AddPlaylistWrapper';
 import { HandleData, HandleTrack, NewTrackAdded } from './components/HandleData'
+import PlaylistExistsModal from './components/PlaylistExistsModal';
 
 function App() {
   const checkData = () =>{
@@ -18,6 +19,7 @@ function App() {
   }
 
   const [playlists, setPlaylists] = useState(checkData());
+  const [existsModalVisible, setExistsModalVisible] = useState(false);
 
   useEffect(() =>{
     localStorage.setItem('playlists', JSON.stringify(playlists));
@@ -25,10 +27,16 @@ function App() {
   }, [playlists]);
 
   const updatePlaylistData = data =>{
-    let playlistArray = JSON.parse(localStorage.getItem('playlists'))
+    let playlistArray = JSON.parse(localStorage.getItem('playlists'));
     if(playlistArray.find(e => e.id === 'initialplaylist')){
       console.log("Removing initial playlist data...");
       playlistArray.splice(0, 1);
+    } else{
+      const exists = playlists.some(e => e.id === data.id);
+        if(exists){
+          setExistsModalVisible(true);
+          return;
+        }
     }
     playlistArray.push(HandleData(data));
     setPlaylists(playlistArray);
@@ -50,7 +58,7 @@ function App() {
       setAdderVisible(true);
       return;
     }
-    console.log(`Playlist with id: ${id} will be deleted.`);
+
     const deletedPlaylistArray = playlists.filter(e =>{
       return e.id !== id;
     });
@@ -96,6 +104,13 @@ function App() {
           initial={playlists.find(e => e.id === 'initialplaylist') ? true : false}
           passPlaylistData={updatePlaylistData}
         />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {existsModalVisible &&(
+          <PlaylistExistsModal
+          closeModal={() =>{setExistsModalVisible(false)}}
+          />
         )}
       </AnimatePresence>
       <AnimatePresence>
