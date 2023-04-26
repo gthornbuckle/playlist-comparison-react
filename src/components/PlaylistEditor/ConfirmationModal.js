@@ -38,7 +38,7 @@ function ConfirmationModal(props){
                 initial={"hidden"}
                 animate={"visible"}
                 exit={"hidden"}
-                transition={{type: "spring", bounce: 0.4, duration: 0.6}}
+                transition={{type: "spring", bounce: 0.2, duration: 0.6}}
             >
                 <span className="py-1 flex flex-col">
                     <p className="py-2 text-slate-400 text-xl">Are you sure you want to delete {props.currentPlaylist.name} ?</p>

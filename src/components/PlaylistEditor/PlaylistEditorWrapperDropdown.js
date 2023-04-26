@@ -53,7 +53,7 @@ function PlaylistEditorWrapperDropdown(props){
                 initial={"hidden"}
                 animate={"visible"}
                 exit={"hidden"}
-                transition={{type: "spring", bounce: 0.4, duration: 0.6}}
+                transition={{type: "spring", bounce: 0.2, duration: 0.6}}
             >
                 <CloseButton closeEditor={props.closeEditor}/>
                 <h1 className=" px-1 text-teal-500 text-3xl text-left">
