@@ -21,6 +21,7 @@ function App() {
   const [playlists, setPlaylists] = useState(checkData());
   const [existsModalVisible, setExistsModalVisible] = useState(false);
 
+
   useEffect(() =>{
     localStorage.setItem('playlists', JSON.stringify(playlists));
 
@@ -108,7 +109,7 @@ function App() {
     setEditorVisible(false);
   }
 
-  const [adderVisible, setAdderVisible] = useState(/*checkInitialData(playlists)*/true);
+  const [adderVisible, setAdderVisible] = useState(checkInitialData(playlists));
   const [editorVisible, setEditorVisible] = useState(false);
 
   return (
