@@ -64,8 +64,8 @@ function PlaylistEditorWrapperDropdown(props){
                 <h1 className=" px-1 text-teal-500 text-3xl text-left">
                     Edit Playlists
                 </h1>
-                <p className=" px-1 py-2 text-slate-400 text-lg text-left">
-                    Select a playlist to modify. Add or delete tracks and drag to change order, save to apply new order.
+                <p className=" px-1 py-2 text-slate-400 text-xl text-left">
+                    Select a playlist to modify. Add or delete tracks and drag to change order, save to apply changes.
                 </p>
                 <span className="flex flex-row items-center justify-center">
                     <DropdownMenu 

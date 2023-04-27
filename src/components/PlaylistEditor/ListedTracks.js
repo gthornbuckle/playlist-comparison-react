@@ -2,21 +2,24 @@ import { React, useState, useEffect } from "react";
 import { Reorder } from "framer-motion";
 import TrackItem from "./TrackItem";
 
-const getTrackNames = arr =>{
-  let initial = [];
-  arr.forEach(e =>{
-    initial.push(e.name)
-  })
-
-  return initial;
-}
-
 function ListedTracks(props){
   const [items, setItems] = useState(props.tracks.map(e=> e));
 
   const passNewOrder = data =>{
     props.newOrder(data);
   }
+
+  const remove = item =>{
+    if(items.length === 1){
+      return;
+    }else{
+      const trackIndex = items.findIndex(i => i.id === item.id);
+      const newItems = items.toSpliced(trackIndex, 1);
+  
+      setItems(newItems);
+    }
+  }
+   
 
   useEffect(() =>{
     passNewOrder(items);
@@ -31,7 +34,7 @@ function ListedTracks(props){
       layoutScroll
     >
       {items.map((track, i) => (
-        <TrackItem key={track.id} item={track} index={i}/>
+        <TrackItem key={track.id} item={track} index={i} remove={() => remove(track)} currentLength={items.length}/>
       ))}
     </Reorder.Group>
   );

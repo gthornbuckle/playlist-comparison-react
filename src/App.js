@@ -105,10 +105,11 @@ function App() {
     console.log(selectedPlaylist);
     newPlaylists.splice(playlistIndex, 0, NewTrackAdded(selectedPlaylist[0]));
     setPlaylists(newPlaylists);
+    setEditorVisible(false);
   }
 
   const [adderVisible, setAdderVisible] = useState(checkInitialData(playlists));
-  const [editorVisible, setEditorVisible] = useState(false);
+  const [editorVisible, setEditorVisible] = useState(true);
 
   return (
     <div className="App">
