@@ -32,7 +32,7 @@ function App() {
       console.log("Removing initial playlist data...");
       playlistArray.splice(0, 1);
     } else{
-      const exists = playlists.some(e => e.id === data.id);
+      const exists = playlists.some(e => e.id === data[0].id);
         if(exists){
           setExistsModalVisible(true);
           return;

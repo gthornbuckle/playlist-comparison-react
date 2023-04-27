@@ -6,7 +6,7 @@ const playlistLength = (type, arr) =>{
             if(e.track === null){
                 return;
             }else {
-            totalDuration += e.track.duration_ms;
+            totalDuration += e.duration;
             }
         })
     }else if(type === "manualtrack"){
@@ -69,15 +69,28 @@ const formatDuration = (min, sec) =>{
     return (minToMs * 60000) + (secToMs * 1000);
 }
 
-export function HandleData(obj){ 
+export function HandleData(arr){
+    let playListObj = {}
 
-    let playListObj = {
-        id: obj.id,
-        name: obj.name,
-        totalTracks: obj.tracks.items.length,
-        totalDuration: playlistLength("spotify", obj.tracks.items),
-        tracks: getTracks(obj.tracks?.items)
-    };
+    playListObj["id"] = arr[0].id;
+    playListObj["name"] = arr[0].name;
+
+    if(arr.length === 1){
+        playListObj["tracks"] = getTracks(arr[0].tracks.items);
+    }
+    else if (arr.length > 1){
+        let firstTracks = getTracks(arr[0].tracks.items);
+
+        arr.slice(1).forEach(e =>{
+            let additionalTracks = getTracks(e.items);
+            additionalTracks.forEach(e =>{firstTracks.push(e)});
+        })
+
+        playListObj["tracks"] = firstTracks;
+    }
+
+    playListObj["totalTracks"] = playListObj.tracks.length;
+    playListObj["totalDuration"] = playlistLength("spotify", playListObj.tracks);
 
     return playListObj;
     

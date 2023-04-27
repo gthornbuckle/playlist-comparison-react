@@ -64,17 +64,38 @@ function AddPlaylistWrapper(props){
 
             let playlistId = query.split('/playlist/').pop();
             if (playlistId.length > 22){
-                playlistId = playlistId.slice(0, -20); 
+                playlistId = playlistId.slice(0, -20);
             }
 
+            let responseDataArray = [];
             let responseData = {};
-
+            
             try{
                 responseData = await spotifySearch(playlistId);
+                responseDataArray.push(responseData);
+                
+                let nextSearch = responseData.tracks.next.split('/playlists/').pop();
+                let moreTracksNeeded = true;
+                do{
+                    try{
+                        if(responseData.tracks?.next != null || responseData.next != null){
+                            responseData = await spotifySearch(nextSearch);
+                            responseDataArray.push(responseData);
+                            nextSearch = responseData.next.split('/playlists/').pop();
+                        }else{
+                            moreTracksNeeded = false;
+                        }
+                    } 
+                    catch (err) {
+                        console.log(err);
+                        moreTracksNeeded = false;
+                    }
+                }while(moreTracksNeeded);
+
             } catch (err) {
                 console.log(err);
             } finally {
-                props.passPlaylistData(responseData);
+                props.passPlaylistData(responseDataArray);
                 setLoading(false);
             }
         }
@@ -98,7 +119,8 @@ function AddPlaylistWrapper(props){
                 <input className={inputStyle}
                         placeholder="Enter playlist url..." 
                         type="text"
-                        name="playlist"
+                        name="url"
+                        label="URL for playlist"
                         value={userInput} 
                         onChange={e => setUserInput(e.target.value)}
                 >
