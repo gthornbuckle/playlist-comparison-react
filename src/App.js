@@ -109,7 +109,7 @@ function App() {
   }
 
   const [adderVisible, setAdderVisible] = useState(checkInitialData(playlists));
-  const [editorVisible, setEditorVisible] = useState(true);
+  const [editorVisible, setEditorVisible] = useState(false);
 
   return (
     <div className="App">

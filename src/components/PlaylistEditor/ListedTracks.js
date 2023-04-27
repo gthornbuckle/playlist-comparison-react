@@ -13,10 +13,8 @@ function ListedTracks(props){
     if(items.length === 1){
       return;
     }else{
-      const trackIndex = items.findIndex(i => i.id === item.id);
-      const newItems = items.toSpliced(trackIndex, 1);
-  
-      setItems(newItems);
+      const removed = items.filter(track => track.id !== item.id);
+      setItems(removed);
     }
   }
    
