@@ -1,5 +1,5 @@
-import { React, useState, useEffect } from "react";
-import { motion, AnimatePresence } from 'framer-motion';
+import { React, useState } from "react";
+import { motion } from 'framer-motion';
 import CloseButton from "./Buttons/CloseButton";
 import { spotifySearch } from './API'
 
@@ -57,6 +57,7 @@ const loadingTransistion = {
 function AddPlaylistWrapper(props){
     const [userInput, setUserInput] = useState("");
     const [isLoading, setLoading] = useState(false);
+    const [invalidWarning, setInvalidWarning] = useState(false);
 
     const getPlaylist = async query =>{
         if(query.includes('spotify')){
@@ -101,6 +102,17 @@ function AddPlaylistWrapper(props){
         }
 
     }
+
+    const formValidation = input =>{
+        if(input.includes("spotify") === false){
+            setInvalidWarning(true);
+        }else if(input.includes("playlist") === false){
+            setInvalidWarning(true);
+        }else{
+            getPlaylist(input);
+            setLoading(true)
+        }
+    }
     
     return(
         <motion.div>
@@ -125,12 +137,28 @@ function AddPlaylistWrapper(props){
                         onChange={e => setUserInput(e.target.value)}
                 >
                 </input>
+                {invalidWarning &&(
+                                <motion.p className="text-pink-500 text-lg absolute left-4 bottom-7"
+                                    initial={{opacity: 0}}
+                                    animate={{opacity: 1, x: [0, 5, 0, -5, 0],}}
+                                    exit={{opacity: 0}}
+                                    transition={{
+                                        x:{
+                                        duration: 0.3,
+                                        repeat: 2,
+                                        ease: "linear"
+                                        }
+                                    }}
+                                >
+                                    Please enter a valid Spotify playlist url.
+                                </motion.p>
+                            )}
                 {!isLoading &&(
                     <div className="flex flex-row justify-end">
                         <motion.button className="p-2 mt-4 w-36 text-white bg-teal-500 text-lg text-center rounded-md"
                             whileHover={{backgroundColor: "#ec4899"}}
                             whileTap={{scale: 0.8}}
-                            onClick={() =>{getPlaylist(userInput); setLoading(true)}}
+                            onClick={() =>{formValidation(userInput)}}
                         >Add Playlist</motion.button>
                     </div>
                 )}

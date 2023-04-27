@@ -108,7 +108,7 @@ function App() {
     setEditorVisible(false);
   }
 
-  const [adderVisible, setAdderVisible] = useState(checkInitialData(playlists));
+  const [adderVisible, setAdderVisible] = useState(/*checkInitialData(playlists)*/true);
   const [editorVisible, setEditorVisible] = useState(false);
 
   return (
