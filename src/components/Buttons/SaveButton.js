@@ -25,7 +25,7 @@ function SaveButton(props){
         <motion.div className="cursor-pointer px-2" onMouseOver={() => setHover(true)} onMouseOut={() => setHover(false)} 
             onClick={props.addTrack}
         >
-            <motion.svg width="24" height="24" viewBox="0 0 20.48 20.52" stroke="#ec4899" strokeWidth="1" strokeLinecap="flat" fill="none"
+            <motion.svg width="40" height="40" viewBox="0 0 20.48 20.52" stroke="#ec4899" strokeWidth="1" strokeLinecap="flat" fill="none"
                 initial={false}
                 animate={isHovered ? "hover" : "initial"}
                 variants={variants}

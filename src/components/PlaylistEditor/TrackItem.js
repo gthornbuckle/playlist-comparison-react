@@ -28,13 +28,13 @@ const [isDrag, setDrag] = useState(false);
     <Reorder.Item 
       value={props.item} 
       id={props.item} 
-      className="p-1 cursor-grab relative mb-1 text-left bg-slate-700"
+      className="p-3 cursor-grab relative mb-1 text-left bg-slate-700"
       onDragStart={() => setDrag(true)} onDragEnd={() => setDrag(false)}
       initial={false}
       animate={isDrag ? "dragging" : "initial"}
       variants={dragVariants}
     >
-      <p className="overflow-hidden">{props.index +1}&nbsp;&nbsp;{checkStringLength(props.item)}</p>
+      <p className="overflow-hidden">{props.index +1}&nbsp;&nbsp;{checkStringLength(props.item.name)}</p>
     </Reorder.Item>
   );
 };

@@ -8,13 +8,15 @@ function ButtonMenu(props){
 
     return(
         <div className="basis-1/5 pl-2 flex flex-row items-center">
-            <AddTrackButton
-                addTrack={props.displayAdder}
-            />  
-            <DeleteButton
-                deleteModal={props.deleteModal}
-            />
-            <SaveButton/>
+            <motion.button className="w-[50px] h-[50px]" onClick={props.displayAdder}>
+                <AddTrackButton/> 
+            </motion.button>
+            <motion.button className="w-[50px] h-[50px]" onClick={props.deleteModal}>
+                <DeleteButton/>
+            </motion.button>
+            <motion.button className="w-[50px] h-[50px]" onClick={() =>{props.updateTrackOrder(props.reorderData, props.currentPlaylist.id)}}>
+                <SaveButton/>
+            </motion.button>
         </div>
     );
 }

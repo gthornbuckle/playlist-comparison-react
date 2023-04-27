@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { motion, AnimatePresence } from 'framer-motion';
 import TrackList from "./ListedTracks";
 import CloseButton from "../Buttons/CloseButton";
@@ -32,6 +32,11 @@ function PlaylistEditorWrapperDropdown(props){
     const [addTrackModalVisible, setaddTrackModalVisible] = useState(false);
     const [confirmationModalVisible, setconfirmationModalVisible] = useState(false);
     const [selectedPlaylist, setSelectedPlaylist] = useState(props.playlistData[0]);
+    const [reorderData, setReorderData] = useState([]);
+
+    const getNewTrackOrder = data => {
+        setReorderData(data);
+    }
 
     const handleChange = name =>{
         let selected = props.playlistData.filter(e =>{
@@ -59,8 +64,8 @@ function PlaylistEditorWrapperDropdown(props){
                 <h1 className=" px-1 text-teal-500 text-3xl text-left">
                     Edit Playlists
                 </h1>
-                <p className=" px-1 py-2 text-slate-400 text-lg text-left italic">
-                    Select a playlist, add or delete tracks and drag tracks to change order
+                <p className=" px-1 py-2 text-slate-400 text-lg text-left">
+                    Select a playlist to modify. Add or delete tracks and drag to change order, save to apply new order.
                 </p>
                 <span className="flex flex-row items-center justify-center">
                     <DropdownMenu 
@@ -72,6 +77,8 @@ function PlaylistEditorWrapperDropdown(props){
                             displayAdder={() =>{setaddTrackModalVisible(true)}}
                             deleteModal={() =>{setconfirmationModalVisible(true)}}
                             currentPlaylist={selectedPlaylist}
+                            updateTrackOrder={props.updateOrder}
+                            reorderData={reorderData}
                         />
                     </div>
                 </span>
@@ -79,6 +86,7 @@ function PlaylistEditorWrapperDropdown(props){
                     <TrackList
                         key={selectedPlaylist.tracks}
                         tracks={selectedPlaylist.tracks}
+                        newOrder={getNewTrackOrder}
                     />
                 </span>
             </motion.div>

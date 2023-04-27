@@ -88,6 +88,25 @@ function App() {
     setPlaylists(newPlaylists);
   }
 
+  const reorderPlaylist = (data, id) =>{
+    let newPlaylists = [];
+    const playlistIndex = playlists.findIndex(i => i.id === id);
+    const selectedPlaylist = playlists.filter(e =>{
+      return e.id === id;
+    });
+    const remainingPlaylists = playlists.filter(e =>{
+      return e.id !== id;
+    });
+
+    remainingPlaylists.forEach(e =>{
+      newPlaylists.push(e);
+    });
+    selectedPlaylist[0].tracks = data;
+    console.log(selectedPlaylist);
+    newPlaylists.splice(playlistIndex, 0, NewTrackAdded(selectedPlaylist[0]));
+    setPlaylists(newPlaylists);
+  }
+
   const [adderVisible, setAdderVisible] = useState(checkInitialData(playlists));
   const [editorVisible, setEditorVisible] = useState(false);
 
@@ -121,6 +140,7 @@ function App() {
           closeEditor={() =>{setEditorVisible(false)}}
           handleDeletePlaylist={deletePlaylist}
           handleAddTrack={addManualTrack}
+          updateOrder={reorderPlaylist}
         />
         )}
       </AnimatePresence>

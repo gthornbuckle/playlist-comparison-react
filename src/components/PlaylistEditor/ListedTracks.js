@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { Reorder } from "framer-motion";
 import TrackItem from "./TrackItem";
 
@@ -12,7 +12,15 @@ const getTrackNames = arr =>{
 }
 
 function ListedTracks(props){
-  const [items, setItems] = useState(getTrackNames(props.tracks));
+  const [items, setItems] = useState(props.tracks.map(e=> e));
+
+  const passNewOrder = data =>{
+    props.newOrder(data);
+  }
+
+  useEffect(() =>{
+    passNewOrder(items);
+  }, [items]);
 
   return (
     <Reorder.Group 
@@ -23,7 +31,7 @@ function ListedTracks(props){
       layoutScroll
     >
       {items.map((track, i) => (
-        <TrackItem key={track} item={track} index={i}/>
+        <TrackItem key={track.id} item={track} index={i}/>
       ))}
     </Reorder.Group>
   );
