@@ -1,4 +1,4 @@
-localStorage.setItem('playlists', JSON.stringify([
+[
     {
         "id": "3SVgLvA7NCWVxU3RKAXu1Q",
         "name": "🚶",
@@ -2531,4 +2531,4 @@ localStorage.setItem('playlists', JSON.stringify([
         "totalTracks": 116,
         "totalDuration": 42599444
     }
-]))
+]

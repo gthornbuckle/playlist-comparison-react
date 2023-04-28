@@ -1,18 +1,34 @@
 import axios from 'axios';
 import qs from 'qs';
+import { db } from '../firebase-config';
+import { getDocs, collection } from 'firebase/firestore';
+
+const credRef = collection(db, "credentials");
+
+const getCredential = async () =>{
+  let data = [];
+  try{
+    const getCred = await getDocs(credRef);
+    return getCred.docs.map(e => ({...e.data()}));
+    
+  }catch (err){
+    console.log(err);
+  }
+}
 
 export const spotifySearch = async query =>{
+  let spotifyCred = await getCredential();
   let config = {};
   let spotifyToken = {};
   
   if (localStorage.getItem('Spotifytoken') === null) {
     console.log("No token found");
-    spotifyToken = await getSpotifyToken();
+    spotifyToken = await getSpotifyToken(spotifyCred);
     localStorage.setItem('Spotifytoken', JSON.stringify(spotifyToken));
 
   }else if (Date.now() > JSON.parse(localStorage.getItem('Spotifytoken')).created + 3600000){
     console.log("Token expired");
-    spotifyToken = await getSpotifyToken();
+    spotifyToken = await getSpotifyToken(spotifyCred);
     localStorage.setItem('Spotifytoken', JSON.stringify(spotifyToken));
 
   }else{
@@ -37,12 +53,12 @@ export const spotifySearch = async query =>{
   });
 }
 
-const getSpotifyToken = () =>{
+const getSpotifyToken = input =>{
   console.log("Requesting new token...");
   let data = qs.stringify({
     'grant_type': 'client_credentials',
-    'client_id': '3e4126f2bc784833ba1c34032f19e3f7',
-    'client_secret': '194ce5bc032e4354b07bfa1c3535617b' 
+    'client_id': `${input[0].client_id}`,
+    'client_secret': `${input[0].client_secret}` 
   });
   
   let config = {

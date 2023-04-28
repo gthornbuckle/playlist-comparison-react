@@ -1,11 +1,6 @@
 import  React  from "react";
 import { motion } from 'framer-motion';
 
-const inputStyle = `mt-4 placeholder:text-slate-400 block
-bg-slate-700 w-full border border-slate-700 rounded-md py-2 px-2 shadow-sm focus:outline-none
-focus:border-teal-500 focus:ring-teal-500 focus:ring-1 sm:text-md text-teal-500
-selection:bg-teal-300 selection:text-teal-900`
-
 const container = {
     visible: {
         opacity: 0.8,
