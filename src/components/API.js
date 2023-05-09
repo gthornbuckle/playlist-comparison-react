@@ -6,7 +6,6 @@ import { getDocs, collection } from 'firebase/firestore';
 const credRef = collection(db, "credentials");
 
 const getCredential = async () =>{
-  let data = [];
   try{
     const getCred = await getDocs(credRef);
     return getCred.docs.map(e => ({...e.data()}));
